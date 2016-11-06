@@ -1,34 +1,52 @@
 // START SCREENS (triggered by hitting nav buttons)
+let skinTemplate = new Skin({fill: 'white'}); // fill in!
 
-let favoritesScreen = new Label({string:'Replace with Favorites list'});
-let foodScreen = new Label({string:'Replace with Foods list'});
-let restroomScreen = new Label({string:'Replace with restroom list'});
-let merchScreen = new Label({string:'Replace with Merchandise list'});
-let infoScreen = new Label({string:'Replace with Info list'});
+let placeHolderStyle = new Style({ font: "20px", color: "black" }), 
 
+// This will hold all the other screens
+export let screenTemplate = Column.template($ => ({
+	name: $.name, top: 0, bottom: 55, left: 0, right: 0, // bottom 55 is for navbar room
+	contents: $.contents, skin: skinTemplate
+}));
+
+export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
+export let favoritesScreenContainer = Container.template($ => ({
+	contents: [
+		screenTemplate({
+			contents:[new favoritesScreen({})], 
+			name:'foodScreen',
+		})] 
+}));
+
+export let restroomScreen = Label.template($ => ({string:'Replace with restroom list',style:placeHolderStyle}));
+export let restroomScreenContainer = Container.template($ => ({
+	contents: [
+		screenTemplate({
+			contents:[new restroomScreen({})], 
+			name:'foodScreen',
+		})] 
+}));
+
+
+export let merchScreen = Label.template($ => ({string:'Replace with Merchandise list',style:placeHolderStyle}));
+export let merchScreenContainer = Container.template($ => ({
+	contents: [
+		screenTemplate({
+			contents:[new merchScreen({})], 
+			name:'foodScreen',
+		})] 
+}));
+
+let infoScreen = Label.template($ => ({string:'Replace with Info list', style:placeHolderStyle}));
+export let infoScreenContainer = Container.template($ => ({
+	contents: [
+		screenTemplate({
+			contents:[new infoScreen({})], 
+			name:'foodScreen',
+		})] 
+}));
+
+export let foodScreen = Label.template($ => ({string:'Replace with Foods list', style:placeHolderStyle}));
+// Foodscreen instantiated in main.js
 
 // END SCREENS
-
-
-// START NAVBAR
-var NavButton = Container.template($ => ({    active: true, top: 2, bottom: 2, right: 2, left: 2,    behavior: Behavior({        onCreate: function(content){            this.upSkin = new Skin({                fill: "transparent",                 borders: {left: 1, right: 1, top: 1, bottom: 1},                 stroke: "white"            });            this.downSkin = new Skin({                fill: "#3AFF3E",                 borders: {left: 1, right: 1, top: 1, bottom: 1},                 stroke: "white"            });            content.skin = this.upSkin;        },        onTouchBegan: function(content){            content.skin = this.downSkin;        },        onTouchEnded: function(content){            content.skin = this.upSkin;            application.remove(currentScreen);  // Remove the old screen from the application            currentScreen = new $.nextScreen;  // Make the new screen            application.add(currentScreen);  // Add the new screen to the application        },    }),   contents: [        Label($, { top: 0, bottom: 0, left: 0, right: 0,             style: new Style({ font: "20px", color: "white" }),             string: $.string})   ]}));
-
-
-var navBar = new Line({ bottom: 0, height: 55, left: 0, right: 0,    skin: new Skin({ fill: "black" }),    contents: [        new NavButton({ string: "1", nextScreen: favoritesScreen}),        new NavButton({ string: "2", nextScreen: foodScreen}),        new NavButton({ string: "3", nextScreen: restroomScreen}),
-        new NavButton({ string: "4", nextScreen: merchScreen}),
-        new NavButton({ string: "5", nextScreen: infoScreen}),    ]});
-
-// END NAVBAR
-
-// Main wrapper! Exported to main.js
-export var mainContainer = new Column(
-	{
-		name:'mainContainer', top:0, bottom:0, left:0, right:0,
-		contents : [
-			new Label({string:'jews'}),
-			navBar
-			
-		]
-		
-	}
-);
