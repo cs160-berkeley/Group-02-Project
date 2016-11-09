@@ -55,7 +55,7 @@ var NavButton = Container.template($ => ({
         onTouchEnded: function(content){
             content.skin = this.upSkin;
             application.remove(currentScreen);  // Remove the old screen from the application
-            currentScreen = new $.nextScreen;  // Make the new screen
+            currentScreen = new $.nextScreen; // Make the new screen
             application.add(currentScreen);  // Add the new screen to the application
         },
     }),
