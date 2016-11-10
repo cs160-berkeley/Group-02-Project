@@ -21,7 +21,7 @@ import {skinTemplate, listScrollerTemplate, tabHeaderLabelTemplate, screenTempla
 let favoritesImage = new Texture("assets/star.png");
 
 let foodScreenContainer = Container.template($ => ({
-    left:0, right: 0, top: 45, bottom: 65,
+    left:0, right: 0, top: 45, bottom: 60,
     skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -35,6 +35,10 @@ let foodScreenContainer = Container.template($ => ({
 
 
 var currentScreen = new foodScreenContainer;
+/*var currentScreen = new queueProfileScreenContainer({
+	titleName:"BURRITO TENT", minuteWait:"20", minuteWalk:"5",
+	favoriteURL:"assets/yellow-star.png", // "assets/star.png" if not a favorite
+});*/
 application.add(currentScreen);
 
 
@@ -110,7 +114,8 @@ var NavButton = Container.template($ => ({
    ]
 }));
 
-var navBar = new Line({ bottom: 0, height: 65, left: 0, right: 0,
+
+var navBar = new Line({ bottom: 0, height: 60, left: 0, right: 0,
     skin: new Skin({ fill: "#C4C4C4" }),
     contents: [
         new NavButton({ iconURL: "assets/star.png", nextScreen: favoritesScreenContainer}),
