@@ -16,6 +16,9 @@ let commentNameStyle = new Style({font:"15px Roboto", color:"black"});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"black"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282"});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
+
+import {changeScreensToProfile} from 'main';
+
 // IMPORT scrollers
 import {
     VerticalScroller,
@@ -68,14 +71,24 @@ let listEntryLineTemplate = Line.template($ => ({
 }));
 
 let listEntryColumnTemplate = Column.template($ => ({
-	left: 0, right: 0, top: 0,
-	contents: $
+	left: 0, right: 0, top: 0, active: true,
+	contents: $.content,
+	behavior: Behavior({
+        onBackgroundChange: function(container, data) {
+            // container.skin = data.newSkin;
+        },
+        onTouchEnded: function(container, data) {
+        	trace("yes\n");
+            //content.skin = this.upSkin;
+            changeScreensToProfile($.data); // Add the new screen to the application
+        }
+    })
 }));
 
 //container for a list entry
 let listEntryContainer = Container.template($ => ({
 	skin: listEntrySkin,
-	top: 0, left: 0, right: 0, height: 75,
+	top: 0, left: 0, right: 0, height: 75, active: true,
 	contents: [
 		// new listEntryTitleTemplate({queueName: "Jankos"}),
 		// new listEntryLocationTemplate({queueLocation: "Area 3"}),
@@ -83,12 +96,12 @@ let listEntryContainer = Container.template($ => ({
 		// new listEntryMinuteWaitTemplate({}),
 		Line($, {left: 0, right: 0,
 					contents: [
-						new listEntryColumnTemplate([new listEntryTitleTemplate({queueName: $.name}), new listEntryLocationTemplate({queueLocation: $.location})]),
-						new listEntryColumnTemplate([new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({})]),
+						new listEntryColumnTemplate({content: [new listEntryTitleTemplate({queueName: $.name}), new listEntryLocationTemplate({queueLocation: $.location})], data: $}),
+						new listEntryColumnTemplate({content: [new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({})], data: $}),
 
 					]
 				})
-	]
+	],
 }));
 
 let borderContainer = Container.template($ => ({
@@ -257,7 +270,7 @@ export let queueProfileScreenContainer = Container.template($ => ({
 								}),
 								new Column({ left:0, width:180,
 									contents:[
-										new titleLabelTemplate({titleName: $.titleName})
+										new titleLabelTemplate({titleName: $.name})
 									]
 								}),
 								new Column ({left:5,right:0, width:70,
@@ -270,14 +283,14 @@ export let queueProfileScreenContainer = Container.template($ => ({
 						// Minutes to wait block
 						new Column({skin:bottomBorderSkin, width: 100, 
 							contents:[
-								new Label({style:bodyNumberStyle, string: $.minuteWait}),
+								new Label({style:bodyNumberStyle, string: $.queueLength}),
 								new Label({style:bodyStyle, bottom:10, string:"min wait"}),
 							]
 						}),
 						// Minutes to reach block
 						new Column({skin:bottomBorderSkin, width:100, top:10, 
 							contents:[
-								new Label({style:bodyNumberStyle, string: $.minuteWalk}),
+								new Label({style:bodyNumberStyle, string: "10"}),
 								new Label({style:bodyStyle, bottom:10, string:"mins to reach"}),
 							]
 						}),
@@ -285,8 +298,8 @@ export let queueProfileScreenContainer = Container.template($ => ({
 						new Column({top:25, left:0, right:0, 
 							contents:[
 								new Label({style:boldBodyStyle, bottom:10, string:"What people are saying"}),
-								new commentContainer({userName:"John Doe", timePosted: "Today at 2pm", commentBody:"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}),
-								new commentContainer({userName:"Jane Doe", timePosted: "Today at 1pm", commentBody:"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}),
+								$.comments.map(comment => 
+									new commentContainer({userName:comment.name, timePosted: "Today at "+comment.time, commentBody:comment.comment}))
 							]
 						})
 						

@@ -17,11 +17,11 @@
 
 // START NAVBAR
 import {foodQueuesData} from 'dummydata';
-import {skinTemplate, listScrollerTemplate, tabHeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
+import {queueProfileScreenContainer, skinTemplate, listScrollerTemplate, tabHeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
 let favoritesImage = new Texture("assets/star.png");
 
 let foodScreenContainer = Container.template($ => ({
-    left:0, right: 0, top: 45, bottom: 60,
+    left:0, right: 0, top: 45, bottom: 65,
     skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -35,11 +35,14 @@ let foodScreenContainer = Container.template($ => ({
 
 
 var currentScreen = new foodScreenContainer;
-/*var currentScreen = new queueProfileScreenContainer({
-	titleName:"BURRITO TENT", minuteWait:"20", minuteWalk:"5",
-	favoriteURL:"assets/yellow-star.png", // "assets/star.png" if not a favorite
-});*/
 application.add(currentScreen);
+
+export let changeScreensToProfile = function(data) {
+    trace("yayuh" + JSON.stringify(data) + "\n");
+    application.remove(currentScreen);  // Remove the old screen from the application
+    currentScreen = new queueProfileScreenContainer(data);  // Make the new screen
+    application.add(currentScreen); 
+}
 
 
 var TopButton = Container.template($ => ({
@@ -114,8 +117,7 @@ var NavButton = Container.template($ => ({
    ]
 }));
 
-
-var navBar = new Line({ bottom: 0, height: 60, left: 0, right: 0,
+var navBar = new Line({ bottom: 0, height: 65, left: 0, right: 0,
     skin: new Skin({ fill: "#C4C4C4" }),
     contents: [
         new NavButton({ iconURL: "assets/star.png", nextScreen: favoritesScreenContainer}),
