@@ -1,3 +1,26 @@
+export var favoritesQueuesData = [
+   {name:'Bud Light Station', location:'Area 4', queueLength:22, 
+           comments:[
+               {time: '10:20am', name:'Abhi Rai', comment:'Great BudLight, worth the wait'},
+               {time: '10:20am', name:'Abhi Rai', comment:'Great BudLight, worth the wait'},
+               {time: '10:20am', name:'Abhi Rai', comment:'Ok beer but was expensive'},
+           ]
+   },
+  { name:'What the Pho', location:'Area 1', queueLength:34, 
+           comments:[
+               {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait'},
+               {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait'},
+           ]
+   },
+    { name:'Restroom Area 3 (W)', location:'Area 1', queueLength:34, 
+           comments:[
+               {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait'},
+               {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait'},
+           ]
+   }
+
+]
+
 export var foodQueuesData = [
    {
        name:'BurritoTent', location:'Area 2', queueLength:2, 

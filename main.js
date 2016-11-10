@@ -16,7 +16,8 @@
  */
 
 // START NAVBAR
-import {skinTemplate, tabHeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
+import {foodQueuesData} from 'dummydata';
+import {skinTemplate, listScrollerTemplate, tabHeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
 let favoritesImage = new Texture("assets/star.png");
 
 let foodScreenContainer = Container.template($ => ({
@@ -24,7 +25,10 @@ let foodScreenContainer = Container.template($ => ({
     skin: skinTemplate,
 	contents: [
 		screenTemplate({
-			contents:[new foodScreen({})], 
+			contents:[
+                new tabHeaderLabelTemplate({tabName: "Food"}),
+                listScrollerTemplate(foodQueuesData, {})
+            ], 
 			name:'foodScreen',
 		})] 
 }));

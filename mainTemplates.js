@@ -6,7 +6,7 @@ import {
     BottomScrollerShadow
 } from 'scroller/scroller';
 
-import {foodQueuesData} from 'dummydata';
+import {favoritesQueuesData, foodQueuesData, restroomQueuesData, merchandiseQueuesData, informationQueuesData} from 'dummydata';
 
 
 export let skinTemplate = new Skin({fill: 'white'}); // fill in!
@@ -93,7 +93,7 @@ let listColumnTemplate = Column.template($ => ({
 }));
 
 // lets make this shit scroll
-let listScrollerTemplate = VerticalScroller.template($ => ({
+export let listScrollerTemplate = VerticalScroller.template($ => ({
 	active: true, top:0, bottom: 0, skin: new Skin({fill: 'white'}),
 	// contents: [new listColumnTemplate({})]
 	contents: [
@@ -122,7 +122,8 @@ export let favoritesScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-				listScrollerTemplate(foodQueuesData, {})
+				new tabHeaderLabelTemplate({tabName: "Favorites"}),
+				listScrollerTemplate(favoritesQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 
@@ -136,7 +137,7 @@ export let restroomScreenContainer = Container.template($ => ({
 		screenTemplate({
 			contents:[
 				new tabHeaderLabelTemplate({tabName: "Restrooms"}),
-				listScrollerTemplate(foodQueuesData, {})
+				listScrollerTemplate(restroomQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 
@@ -151,7 +152,7 @@ export let merchScreenContainer = Container.template($ => ({
 		screenTemplate({
 			contents:[
 			new tabHeaderLabelTemplate({tabName: "Merchandise"}),
-			listScrollerTemplate(foodQueuesData, {})
+			listScrollerTemplate(merchandiseQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 
@@ -165,7 +166,7 @@ export let infoScreenContainer = Container.template($ => ({
 		screenTemplate({
 			contents:[
 			new tabHeaderLabelTemplate({tabName: "Information"}),
-			listScrollerTemplate(foodQueuesData, {})
+			listScrollerTemplate(informationQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 
