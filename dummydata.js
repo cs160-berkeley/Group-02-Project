@@ -114,7 +114,7 @@ export var informationQueuesData = [
                {time: '10:20am', name:'Andy Carle', comment:'NOT WORTH IT STAY AWAY'},
            ]
    },
-   {name:'Cloudsurfing', location:'Middle Stage', queueLength:40, 
+   {name:'Cloudsurfing', location:'Middle Stage - Area 2', queueLength:40, 
            comments:[
                {time: '10:20am', name:'Abhi Rai', comment:'Their bassist SUCKS'},
            ]

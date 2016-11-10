@@ -8,7 +8,13 @@ let bottomBorderSkin = new Skin({fill: 'white', borders: {left: 0, right: 0, top
 
 // Style templates
 let titleStyle = new Style({font: "bold 25px Roboto", color: "black" }); 
-let titleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
+let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
+export let HeaderLabelTemplate = Label.template($ => ({
+	string: $.titleName,
+	height: 48,
+	skin: skinTemplate,
+	style: titleStyle
+}));
 let bodyStyle = new Style({font:"light 20px Roboto", color:"black"});
 let bodyNumberStyle = new Style({font:"bold 35px Roboto", color:"black"});
 let boldBodyStyle = new Style({font:"bold 20px Roboto", color:"black"});
@@ -39,25 +45,17 @@ let listEntrySkin = new Skin({fill: 'white', borders: {left: 0, right: 0, top: 1
 
 // START LIST TEMPLATES
 
-let blackTextStyle = new Style({ font: "18px", color: "black" }), 
+//let blackTextStyle = new Style({ font: "18px", color: "black" }), 
 
 
 //Different text labels for each queue entry within a list
 let listEntryTitleTemplate = Label.template($ => ({
-	left: 15, top: 0, bottom: 0, height: 24, string: $.queueName, style: new Style({ font: "24px", color: "black" }), skin: skinTemplate
+	left: 15, top: 0, bottom: 0, height: 24, string: $.queueName, style: boldBodyStyle, skin: skinTemplate
 }));
-let listEntryLocationTemplate = Label.template($ => ({left: 15, top: 0, bottom: 0, height: 24, string: $.queueLocation, style:blackTextStyle, skin: skinTemplate}));
-let listEntryWaitTimeTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: $.waitTimeMinutes, style:blackTextStyle, skin: skinTemplate}));
-let listEntryMinuteWaitTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: "min wait", style:blackTextStyle, skin: skinTemplate}));
+let listEntryLocationTemplate = Label.template($ => ({left: 15, top: 0, bottom: 0, height: 24, string: $.queueLocation, style:bodyStyle, skin: skinTemplate}));
+let listEntryWaitTimeTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: $.waitTimeMinutes, style:boldBodyStyle, skin: skinTemplate}));
+let listEntryMinuteWaitTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate}));
 
-
-//label at the top of each queue page
-export let tabHeaderLabelTemplate = Label.template($ => ({
-	string: $.tabName,
-	height: 48,
-	skin: skinTemplate,
-	style: headerStyle
-}));
 
 //line for two sides of entry info
 let listEntryLineTemplate = Line.template($ => ({
@@ -90,10 +88,6 @@ let listEntryContainer = Container.template($ => ({
 	skin: listEntrySkin,
 	top: 0, left: 0, right: 0, height: 75, active: true,
 	contents: [
-		// new listEntryTitleTemplate({queueName: "Jankos"}),
-		// new listEntryLocationTemplate({queueLocation: "Area 3"}),
-		// new listEntryWaitTimeTemplate({waitTimeMinutes: "20"}),
-		// new listEntryMinuteWaitTemplate({}),
 		Line($, {left: 0, right: 0,
 					contents: [
 						new listEntryColumnTemplate({content: [new listEntryTitleTemplate({queueName: $.name}), new listEntryLocationTemplate({queueLocation: $.location})], data: $}),
@@ -116,7 +110,6 @@ let borderContainer = Container.template($ => ({
 var createContentArray = function(object) {
 	var contents = [];
 	for (var i = 0; i < object.length; i++) {
-		trace("lets get it\n");
 		contents.push(new listEntryContainer(object[i]));
 	}
 	contents.push(new borderContainer({}));
@@ -160,7 +153,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-				new tabHeaderLabelTemplate({tabName: "Favorites"}),
+				new HeaderLabelTemplate({titleName: "Favorites"}),
 				listScrollerTemplate(favoritesQueuesData, {})
 			], 
 			name:'foodScreen',
@@ -174,7 +167,7 @@ export let restroomScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-				new tabHeaderLabelTemplate({tabName: "Restrooms"}),
+				new HeaderLabelTemplate({titleName: "Restrooms"}),
 				listScrollerTemplate(restroomQueuesData, {})
 			], 
 			name:'foodScreen',
@@ -189,7 +182,7 @@ export let merchScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-			new tabHeaderLabelTemplate({tabName: "Merchandise"}),
+			new HeaderLabelTemplate({titleName: "Merchandise"}),
 			listScrollerTemplate(merchandiseQueuesData, {})
 			], 
 			name:'foodScreen',
@@ -203,7 +196,7 @@ export let infoScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-			new tabHeaderLabelTemplate({tabName: "Information"}),
+			new HeaderLabelTemplate({titleName: "Information"}),
 			listScrollerTemplate(informationQueuesData, {})
 			], 
 			name:'foodScreen',
@@ -270,7 +263,7 @@ export let queueProfileScreenContainer = Container.template($ => ({
 								}),
 								new Column({ left:0, width:180,
 									contents:[
-										new titleLabelTemplate({titleName: $.name})
+										new TitleLabelTemplate({titleName: $.name})
 									]
 								}),
 								new Column ({left:5,right:0, width:70,
