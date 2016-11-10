@@ -267,9 +267,32 @@ export let queueProfileScreenContainer = Container.template($ => ({
 									]
 								}),
 								new Column ({left:5,right:0, width:70,
+									active: true,
 									contents:[
-										new Picture({height:30, url: $.favoriteURL})
-									]
+										new Picture({
+											active: true,
+											height:30, url: "assets/star.png",
+											behavior: Behavior({
+												onTouchEnded: function(content) {
+													trace("clickity\n");
+													trace(content.url + "\n");
+													if (content.url == "file:///Users/eddieconk/Library/Preferences//fsk/1/embedShell/applications/com.marvell.kinoma.project.queuetip/assets/star.png") {
+														content.url = "file:///Users/eddieconk/Library/Preferences//fsk/1/embedShell/applications/com.marvell.kinoma.project.queuetip/assets/yellow-star.png";
+														favoritesQueuesData.push($);
+													} else {
+														content.url = "file:///Users/eddieconk/Library/Preferences//fsk/1/embedShell/applications/com.marvell.kinoma.project.queuetip/assets/star.png";
+													}
+												}
+											})
+										})
+									],
+									behavior: Behavior({
+										onTouchEnded: function(content) {
+											// trace("clickity\n");
+											application.distribute("changeStar", $);
+											
+										}
+									})
 								})
 							]
 						}),
