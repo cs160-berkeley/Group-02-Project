@@ -16,8 +16,7 @@
  */
 
 // START NAVBAR
-import {screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
-let favoritesImage = new Texture("assets/star.png");
+import {screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer, queueProfileScreenContainer} from 'mainTemplates';
 
 let foodScreenContainer = Container.template($ => ({
 	contents: [
@@ -28,13 +27,17 @@ let foodScreenContainer = Container.template($ => ({
 }));
 
 
-var currentScreen = new foodScreenContainer;application.add(currentScreen);
+//var currentScreen = new foodScreenContainer;
+var currentScreen = new queueProfileScreenContainer({
+	titleName:"BURRITO TENT", minuteWait:"20", minuteWalk:"5",
+	favoriteURL:"assets/yellow-star.png", // "assets/star.png" if not a favorite
+});application.add(currentScreen);
 
 var NavButton = Container.template($ => ({    active: true, top: 0, bottom: 0, right: 0, left: 0,    behavior: Behavior({        onCreate: function(content){            this.upSkin = new Skin({                fill: "#C4C4C4",                 borders: {left: 0, right: 1, top: 0, bottom: 0},                 stroke: "#aeadad"            });            this.downSkin = new Skin({                fill: "#575757",                 //borders: {left: 1, right: 1, top: 1, bottom: 1},                 //stroke: "black"            });            content.skin = this.upSkin;        },        onTouchBegan: function(content){            content.skin = this.downSkin;        },        onTouchEnded: function(content){            content.skin = this.upSkin;            application.remove(currentScreen);  // Remove the old screen from the application            currentScreen = new $.nextScreen;  // Make the new screen            application.add(currentScreen);  // Add the new screen to the application        },    }),   contents: [
         new Picture({height:30, url: $.iconURL})   ]}));
 
 
-var navBar = new Line({ bottom: 0, height: 55, left: 0, right: 0,    skin: new Skin({ fill: "#C4C4C4" }),    contents: [        new NavButton({ iconURL: "assets/star.png", nextScreen: favoritesScreenContainer}),        new NavButton({ iconURL: "assets/food.png", nextScreen: foodScreenContainer}),        new NavButton({ iconURL: "assets/restroom.png", nextScreen: restroomScreenContainer}),
+var navBar = new Line({ bottom: 0, height: 60, left: 0, right: 0,    skin: new Skin({ fill: "#C4C4C4" }),    contents: [        new NavButton({ iconURL: "assets/star.png", nextScreen: favoritesScreenContainer}),        new NavButton({ iconURL: "assets/food.png", nextScreen: foodScreenContainer}),        new NavButton({ iconURL: "assets/restroom.png", nextScreen: restroomScreenContainer}),
         new NavButton({ iconURL: "assets/merch.png", nextScreen: merchScreenContainer}),
         new NavButton({ iconURL: "assets/schedule.png", nextScreen: infoScreenContainer}),    ]});
 
