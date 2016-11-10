@@ -77,3 +77,25 @@ export var merchandiseQueuesData = [
 
 ]
 
+
+export var informationQueuesData = [
+   {
+    name:'Kanye West', location:'Main Stage - Area 1', queueLength:15, 
+           comments:[
+               {time: '10:20am', name:'Jasper', comment:'YEEZY'},
+           ]
+   },
+   {name:'Taylor Swift', location:'Small Stage - Area 4', queueLength:35, 
+           comments:[
+               {time: '10:20am', name:'Abhi Rai', comment:'Terrible line'},
+               {time: '10:20am', name:'Andy Carle', comment:'NOT WORTH IT STAY AWAY'},
+           ]
+   },
+   {name:'Cloudsurfing', location:'Middle Stage', queueLength:40, 
+           comments:[
+               {time: '10:20am', name:'Abhi Rai', comment:'Their bassist SUCKS'},
+           ]
+   },
+
+]
+
