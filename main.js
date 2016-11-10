@@ -20,7 +20,7 @@ import {skinTemplate, tabHeaderLabelTemplate, screenTemplate, foodScreen, infoSc
 let favoritesImage = new Texture("assets/star.png");
 
 let foodScreenContainer = Container.template($ => ({
-    left:0, right: 0, top: 0, bottom: 65,
+    left:0, right: 0, top: 45, bottom: 65,
     skin: skinTemplate,
 	contents: [
 		screenTemplate({
