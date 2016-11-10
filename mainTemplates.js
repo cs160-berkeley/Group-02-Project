@@ -6,6 +6,8 @@ import {
     BottomScrollerShadow
 } from 'scroller/scroller';
 
+import {foodQueuesData} from 'dummydata';
+
 
 export let skinTemplate = new Skin({fill: 'white'}); // fill in!
 let blueSkin = new Skin({fill: 'gray'});
@@ -64,8 +66,8 @@ let listEntryContainer = Container.template($ => ({
 		// new listEntryMinuteWaitTemplate({}),
 		Line($, {left: 0, right: 0,
 					contents: [
-						new listEntryColumnTemplate([new listEntryTitleTemplate({queueName: "Burrito Tent"}), new listEntryLocationTemplate({queueLocation: "Area 2"})]),
-						new listEntryColumnTemplate([new listEntryWaitTimeTemplate({waitTimeMinutes: "20"}), new listEntryMinuteWaitTemplate({})]),
+						new listEntryColumnTemplate([new listEntryTitleTemplate({queueName: $.name}), new listEntryLocationTemplate({queueLocation: $.location})]),
+						new listEntryColumnTemplate([new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({})]),
 
 					]
 				})
@@ -76,9 +78,9 @@ let listEntryContainer = Container.template($ => ({
 // object: JSON data from hardware
 var createContentArray = function(object) {
 	var contents = [];
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < object.length; i++) {
 		trace("lets get it\n");
-		contents.push(new listEntryContainer({}));
+		contents.push(new listEntryContainer(object[i]));
 	}
 	return contents;
 };
@@ -86,7 +88,7 @@ var createContentArray = function(object) {
 let listColumnTemplate = Column.template($ => ({
 	top: 0, bottom: 0, left: 0, right: 0,
     skin: new Skin({fill: "white"}),
-    contents: createContentArray({})
+    contents: createContentArray($)
 
 }));
 
@@ -95,7 +97,7 @@ let listScrollerTemplate = VerticalScroller.template($ => ({
 	active: true, top:0, bottom: 0, skin: new Skin({fill: 'white'}),
 	// contents: [new listColumnTemplate({})]
 	contents: [
-		new listColumnTemplate({})
+		new listColumnTemplate($)
 	]
 }));
 
@@ -120,7 +122,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-				listScrollerTemplate({}, {})
+				listScrollerTemplate(foodQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 
@@ -133,7 +135,8 @@ export let restroomScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-			new tabHeaderLabelTemplate({tabName: "Restrooms"})
+				new tabHeaderLabelTemplate({tabName: "Restrooms"}),
+				listScrollerTemplate(foodQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 
@@ -147,7 +150,8 @@ export let merchScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-			new tabHeaderLabelTemplate({tabName: "Merchandise"})
+			new tabHeaderLabelTemplate({tabName: "Merchandise"}),
+			listScrollerTemplate(foodQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 
@@ -160,7 +164,8 @@ export let infoScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-			new tabHeaderLabelTemplate({tabName: "Information"})
+			new tabHeaderLabelTemplate({tabName: "Information"}),
+			listScrollerTemplate(foodQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 
