@@ -92,7 +92,7 @@ let listColumnTemplate = Column.template($ => ({
 
 // lets make this shit scroll
 let listScrollerTemplate = VerticalScroller.template($ => ({
-	active: true, top:0, bottom: 0, skin: new Skin({fill: 'gray'}),
+	active: true, top:0, bottom: 0, skin: new Skin({fill: 'white'}),
 	// contents: [new listColumnTemplate({})]
 	contents: [
 		new listColumnTemplate({})
@@ -106,7 +106,7 @@ let listScrollerTemplate = VerticalScroller.template($ => ({
 
 // This will hold all the other screens
 export let screenTemplate = Column.template($ => ({
-	name: $.name, top: 45, bottom: 55, left: 0, right: 0, // bottom 55 is for navbar room
+	name: $.name, top: 45, bottom: 65, left: 0, right: 0, // bottom 55 is for navbar room
 	contents: $.contents,
 	skin: skinTemplate
 }));
@@ -115,7 +115,7 @@ export let screenTemplate = Column.template($ => ({
 
 // export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
 export let favoritesScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 0, bottom: 55,
+	left:0, right: 0, top: 0, bottom: 65,
 	// skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -128,7 +128,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 
 export let restroomScreen = Label.template($ => ({string:'Replace with restroom list',style:placeHolderStyle}));
 export let restroomScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 0, bottom: 55,
+	left:0, right: 0, top: 0, bottom: 65,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -142,7 +142,7 @@ export let restroomScreenContainer = Container.template($ => ({
 
 export let merchScreen = Label.template($ => ({string:'Replace with Merchandise list',style:placeHolderStyle}));
 export let merchScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 0, bottom: 55,
+	left:0, right: 0, top: 0, bottom: 65,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -155,7 +155,7 @@ export let merchScreenContainer = Container.template($ => ({
 
 let infoScreen = Label.template($ => ({string:'Replace with Info list', style:placeHolderStyle}));
 export let infoScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 0, bottom: 55,
+	left:0, right: 0, top: 0, bottom: 65,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({

@@ -20,7 +20,7 @@ import {skinTemplate, tabHeaderLabelTemplate, screenTemplate, foodScreen, infoSc
 let favoritesImage = new Texture("assets/star.png");
 
 let foodScreenContainer = Container.template($ => ({
-    left:0, right: 0, top: 0, bottom: 55,
+    left:0, right: 0, top: 0, bottom: 65,
     skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -32,6 +32,7 @@ let foodScreenContainer = Container.template($ => ({
 
 var currentScreen = new foodScreenContainer;
 application.add(currentScreen);
+
 
 var TopButton = Container.template($ => ({
     active: true, top: 0, bottom: 0, left: $.left, width: 70,
@@ -59,6 +60,16 @@ var TopButton = Container.template($ => ({
         new Picture({height:25,left: 0, url: $.iconURL})
    ]
 }));
+
+var topBar = new Line({ top: 0, height: 45, left: 0, width: 480,
+    skin: new Skin({ fill: "#c4c4c4" }),
+    contents: [
+        new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}),
+        new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}),
+        new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}),
+    ]
+});
+application.add(topBar);
 
 var NavButton = Container.template($ => ({
     active: true, top: 0, bottom: 0, right: 0, left: 0,
@@ -95,16 +106,6 @@ var NavButton = Container.template($ => ({
    ]
 }));
 
-var topBar = new Line({ top: 0, height: 45, left: 0, width: 480,
-    skin: new Skin({ fill: "#c4c4c4" }),
-    contents: [
-        new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}),
-        new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}),
-        new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}),
-    ]
-});
-
-
 var navBar = new Line({ bottom: 0, height: 65, left: 0, right: 0,
     skin: new Skin({ fill: "#C4C4C4" }),
     contents: [
@@ -117,7 +118,6 @@ var navBar = new Line({ bottom: 0, height: 65, left: 0, right: 0,
 });
 
 // END NAVBAR
-application.add(topBar);
 application.add(navBar);
 
 /*
