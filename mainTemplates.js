@@ -16,6 +16,8 @@ let placeHolderStyle = new Style({ font: "30px", color: "black" }),
 let headerStyle = new Style({ font: "34px", color: "black" }), 
 let whiteTextStyle = new Style({ font: "34px", color: "white" }), 
 
+let listEntrySkin = new Skin({fill: 'white', borders: {left: 0, right: 0, top: 1, bottom: 0}, stroke: '#c4c4c4'})
+
 
 // START LIST TEMPLATES
 
@@ -34,6 +36,7 @@ let listEntryMinuteWaitTemplate = Label.template($ => ({right: 15, top: 0, botto
 //label at the top of each queue page
 export let tabHeaderLabelTemplate = Label.template($ => ({
 	string: $.tabName,
+	height: 48,
 	skin: skinTemplate,
 	style: headerStyle
 }));
@@ -56,9 +59,8 @@ let listEntryColumnTemplate = Column.template($ => ({
 
 //container for a list entry
 let listEntryContainer = Container.template($ => ({
-	skin: skinTemplate,
+	skin: listEntrySkin,
 	top: 0, left: 0, right: 0, height: 75,
-	skin: skinTemplate,
 	contents: [
 		// new listEntryTitleTemplate({queueName: "Jankos"}),
 		// new listEntryLocationTemplate({queueLocation: "Area 3"}),
