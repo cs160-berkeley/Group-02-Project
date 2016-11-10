@@ -76,6 +76,13 @@ let listEntryContainer = Container.template($ => ({
 	]
 }));
 
+let borderContainer = Container.template($ => ({
+	skin: listEntrySkin,
+	top: 0, left: 0, right: 0, height: 5,
+	contents: [
+	]
+}));
+
 // programatically create containers for each of the list items in data object
 // object: JSON data from hardware
 var createContentArray = function(object) {
@@ -84,6 +91,7 @@ var createContentArray = function(object) {
 		trace("lets get it\n");
 		contents.push(new listEntryContainer(object[i]));
 	}
+	contents.push(new borderContainer({}));
 	return contents;
 };
 //column for the two rows of labels (i.e. row 1 = title, row 2 = location) for each list entry
