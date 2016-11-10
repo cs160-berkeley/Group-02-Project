@@ -21,7 +21,7 @@ import {skinTemplate, listScrollerTemplate, tabHeaderLabelTemplate, screenTempla
 let favoritesImage = new Texture("assets/star.png");
 
 let foodScreenContainer = Container.template($ => ({
-    left:0, right: 0, top: 45, bottom: 65,
+    left:0, right: 0, top: 45, bottom: 60,
     skin: skinTemplate,
 	contents: [
 		screenTemplate({

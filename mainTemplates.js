@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 // START SCREENS (triggered by hitting nav buttons)
 let placeHolderStyle = new Style({ font: "20px", color: "black" }), 
 
 // Skins
-let skinTemplate = new Skin({fill: 'white'}); // fill in!
+export let skinTemplate = new Skin({fill: 'white'}); // fill in!
 let commentSkin = new Skin({fill:"#F2F2F2" });
 let bottomBorderSkin = new Skin({fill: 'white', borders: {left: 0, right: 0, top: 0, bottom: 1}, stroke: "#BDBDBD"});
 
@@ -17,7 +16,6 @@ let commentNameStyle = new Style({font:"15px Roboto", color:"black"});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"black"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282"});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
-=======
 // IMPORT scrollers
 import {
     VerticalScroller,
@@ -29,10 +27,7 @@ import {
 import {favoritesQueuesData, foodQueuesData, restroomQueuesData, merchandiseQueuesData, informationQueuesData} from 'dummydata';
 
 
-export let skinTemplate = new Skin({fill: 'white'}); // fill in!
-let blueSkin = new Skin({fill: 'gray'});
 
-let placeHolderStyle = new Style({ font: "30px", color: "black" }), 
 let headerStyle = new Style({ font: "34px", color: "black" }), 
 let whiteTextStyle = new Style({ font: "34px", color: "white" }), 
 
@@ -135,11 +130,10 @@ export let listScrollerTemplate = VerticalScroller.template($ => ({
 // END LIST TEMPLATES
 
 // START SCREENS (triggered by hitting nav buttons)
->>>>>>> master
 
 // This will hold all the other screens
 export let screenTemplate = Column.template($ => ({
-	name: $.name, top: 0, bottom: 65, left: 0, right: 0, // bottom 55 is for navbar room
+	name: $.name, top: 0, bottom: 60, left: 0, right: 0, // bottom 55 is for navbar room
 	contents: $.contents,
 	skin: skinTemplate
 }));
@@ -148,7 +142,7 @@ export let screenTemplate = Column.template($ => ({
 
 // export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
 export let favoritesScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 45, bottom: 65,
+	left:0, right: 0, top: 45, bottom: 60,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -162,7 +156,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 
 export let restroomScreen = Label.template($ => ({string:'Replace with restroom list',style:placeHolderStyle}));
 export let restroomScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 45, bottom: 65,
+	left:0, right: 0, top: 45, bottom: 60,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -177,7 +171,7 @@ export let restroomScreenContainer = Container.template($ => ({
 
 export let merchScreen = Label.template($ => ({string:'Replace with Merchandise list',style:placeHolderStyle}));
 export let merchScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 45, bottom: 65,
+	left:0, right: 0, top: 45, bottom: 60,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -191,7 +185,7 @@ export let merchScreenContainer = Container.template($ => ({
 
 let infoScreen = Label.template($ => ({string:'Replace with Info list', style:placeHolderStyle}));
 export let infoScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 45, bottom: 65,
+	left:0, right: 0, top: 45, bottom: 60,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -246,7 +240,7 @@ let commentContainer = Container.template($ => ({
 }))
 
 export let queueProfileScreenContainer = Container.template($ => ({
-	skin: skinTemplate, top:45, bottom:55, left:0, right:0, 
+	skin: skinTemplate, top:45, bottom:60, left:0, right:0, 
 	contents: [
 		screenTemplate({
 			contents:[
