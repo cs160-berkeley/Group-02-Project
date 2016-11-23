@@ -10,10 +10,10 @@ import {
 let placeHolderStyle = new Style({ font: "20px", color: "black" }), 
 
 // Skins
-export let skinTemplate = new Skin({fill: 'white'}); // fill in!
+export let skinTemplate = new Skin({fill: '#fcf3d4'}); // fill in!
 let commentSkin = new Skin({fill:"#F2F2F2" });
-let bottomBorderSkin = new Skin({fill: 'white', borders: {left: 0, right: 0, top: 0, bottom: 1}, stroke: "#BDBDBD"});
-let buttonSkin = new Skin({fill: 'red'});
+let bottomBorderSkin = new Skin({fill: '#fcf3d4', borders: {left: 0, right: 0, top: 0, bottom: 1}, stroke: "#BDBDBD"});
+let buttonSkin = new Skin({fill: '#8fc138'});
 
 let nameInputSkin = new Skin({ borders: { left: 0, right: 0, top: 0, bottom: 2 }, stroke: 'gray' });
 let fieldStyle = new Style({ color: 'black', font: 'bold 18px', horizontal: 'left',
@@ -24,18 +24,18 @@ let whiteSkin = new Skin({ fill: "white" });
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
-let titleStyle = new Style({font: "bold 25px Roboto", color: "black" }); 
+let titleStyle = new Style({font: "bold 23px Roboto", color: "#542403" }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
 let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
 export let HeaderLabelTemplate = Label.template($ => ({
 	string: $.titleName,
-	height: 48,
+	height: 35,
 	skin: skinTemplate,
 	style: titleStyle
 }));
-let bodyStyle = new Style({font:"light 20px Roboto", color:"black"});
-let bodyNumberStyle = new Style({font:"bold 35px Roboto", color:"black"});
-let boldBodyStyle = new Style({font:"bold 20px Roboto", color:"black"});
+let bodyStyle = new Style({font:"light 17px Roboto", color:"#542403"});
+let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#542403"});
+let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#542403"});
 let commentNameStyle = new Style({font:"15px Roboto", color:"black"});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"black"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282"});
@@ -58,7 +58,7 @@ import {favoritesQueuesData, foodQueuesData, restroomQueuesData, merchandiseQueu
 let headerStyle = new Style({ font: "34px", color: "black" }), 
 let whiteTextStyle = new Style({ font: "34px", color: "white" }), 
 
-let listEntrySkin = new Skin({fill: 'white', borders: {left: 0, right: 0, top: 1, bottom: 0}, stroke: '#c4c4c4'})
+let listEntrySkin = new Skin({fill: '#fcf3d4', borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#e0e0e0'})
 
 
 // START LIST TEMPLATES
@@ -172,7 +172,7 @@ export let screenTemplate = Column.template($ => ({
 
 // export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
 export let favoritesScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 45, bottom: 60,
+	left:0, right: 0, top: 35, bottom: 50,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -185,7 +185,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 }));
 // testing differnt way of scrolling content
 // export let favoritesScreenContainer = Container.template($ => ({
-// 	left:0, right: 0, top: 45, bottom: 60, active: true, 
+// 	left:0, right: 0, top: 35, bottom: 50, active: true, 
 // 	skin: skinTemplate,
 // 	contents: [
 // 		VerticalScroller($,{
@@ -203,7 +203,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 
 export let restroomScreen = Label.template($ => ({string:'Replace with restroom list',style:placeHolderStyle}));
 export let restroomScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 45, bottom: 60,
+	left:0, right: 0, top: 35, bottom: 50,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -218,7 +218,7 @@ export let restroomScreenContainer = Container.template($ => ({
 
 export let merchScreen = Label.template($ => ({string:'Replace with Merchandise list',style:placeHolderStyle}));
 export let merchScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 45, bottom: 60,
+	left:0, right: 0, top: 35, bottom: 50,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -232,7 +232,7 @@ export let merchScreenContainer = Container.template($ => ({
 
 let infoScreen = Label.template($ => ({string:'Replace with Info list', style:placeHolderStyle}));
 export let infoScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 45, bottom: 60,
+	left:0, right: 0, top: 35, bottom: 50,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -287,7 +287,7 @@ let commentContainer = Container.template($ => ({
 }))
 
 export let queueProfileScreenContainer = VerticalScroller.template($ => ({
-	skin: skinTemplate, top:45, bottom:60, left:0, right:0, clip: true, active: true,
+	skin: skinTemplate, top:35, bottom:50, left:0, right:0, clip: true, active: true,
 	contents: [
 		screenTemplate({
 			contents:[

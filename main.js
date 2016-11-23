@@ -21,7 +21,7 @@ import {queueProfileScreenContainer, skinTemplate, listScrollerTemplate, HeaderL
 let favoritesImage = new Texture("assets/star.png");
 
 let foodScreenContainer = Container.template($ => ({
-    left:0, right: 0, top: 45, bottom: 60,
+    left:0, right: 0, top: 35, bottom: 50,
     skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -74,8 +74,8 @@ var TopButton = Container.template($ => ({
    ]
 }));
 
-var topBar = new Line({ top: 0, height: 45, left: 0, width: 480,
-    skin: new Skin({ fill: "#c4c4c4" }),
+var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
+    skin: new Skin({ fill: "#ff8a2b" }), // # c4c4c4 gray before, now orange
     contents: [
         new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}),
         new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}),
@@ -97,12 +97,12 @@ var NavButton = Container.template($ => ({
     behavior: Behavior({
         onCreate: function(content){
             this.upSkin = new Skin({
-                fill: "#C4C4C4", 
+                fill: "#ff8a2b", 
                 borders: {left: 0, right: 1, top: 0, bottom: 0}, 
                 stroke: "#aeadad"
             });
             this.downSkin = new Skin({
-                fill: "#575757", 
+                fill: "#ef6300", 
                 //borders: {left: 1, right: 1, top: 1, bottom: 1}, 
                 //stroke: "black"
             });
@@ -127,8 +127,8 @@ var NavButton = Container.template($ => ({
    ]
 }));
 
-var navBar = new Line({ bottom: 0, height: 60, left: 0, right: 0,
-    skin: new Skin({ fill: "#C4C4C4" }),
+var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
+    skin: new Skin({ fill: "#ff8a2b" }),
     contents: [
         new NavButton({ iconURL: "assets/star.png", nextScreen: favoritesScreenContainer}),
         new NavButton({ iconURL: "assets/food.png", nextScreen: foodScreenContainer}),
