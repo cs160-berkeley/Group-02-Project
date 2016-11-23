@@ -26,7 +26,7 @@ let foodScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-                new HeaderLabelTemplate({titleName: "FOOD"}),
+                new HeaderLabelTemplate({titleName: "Food"}),
                 listScrollerTemplate(foodQueuesData, {})
             ], 
 			name:'foodScreen',

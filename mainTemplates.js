@@ -24,12 +24,12 @@ let whiteSkin = new Skin({ fill: "white" });
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
-let titleStyle = new Style({font: "bold 23px Roboto", color: "#542403" }); 
+let titleStyle = new Style({font: "bold 32px Roboto", color: "#542403" }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
 let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
 export let HeaderLabelTemplate = Label.template($ => ({
 	string: $.titleName,
-	height: 35,
+	height: 48,
 	skin: skinTemplate,
 	style: titleStyle
 }));
