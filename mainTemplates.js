@@ -143,7 +143,7 @@ let listColumnTemplate = Column.template($ => ({
 
 // lets make this shit scroll
 export let listScrollerTemplate = VerticalScroller.template($ => ({
-	active: true, top:0, clip: true, skin: new Skin({fill: 'white'}),
+	active: true, top:0, clip: true, skin: skinTemplate,
 	// contents: [new listColumnTemplate({})]
 	contents: [
 		new listColumnTemplate($)
@@ -172,7 +172,7 @@ export let screenTemplate = Column.template($ => ({
 
 // export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
 export let favoritesScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 35, bottom: 50,
+	left:0, right: 0, top: 35, bottom: 50, clip: true,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -203,7 +203,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 
 export let restroomScreen = Label.template($ => ({string:'Replace with restroom list',style:placeHolderStyle}));
 export let restroomScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 35, bottom: 50,
+	left:0, right: 0, top: 35, bottom: 50, clip: true,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -218,7 +218,7 @@ export let restroomScreenContainer = Container.template($ => ({
 
 export let merchScreen = Label.template($ => ({string:'Replace with Merchandise list',style:placeHolderStyle}));
 export let merchScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 35, bottom: 50,
+	left:0, right: 0, top: 35, bottom: 50, clip: true,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -232,7 +232,7 @@ export let merchScreenContainer = Container.template($ => ({
 
 let infoScreen = Label.template($ => ({string:'Replace with Info list', style:placeHolderStyle}));
 export let infoScreenContainer = Container.template($ => ({
-	left:0, right: 0, top: 35, bottom: 50,
+	left:0, right: 0, top: 35, bottom: 50, clip: true,
 	skin: skinTemplate,
 	contents: [
 		screenTemplate({
