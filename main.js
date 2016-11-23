@@ -21,7 +21,7 @@ import {queueProfileScreenContainer, skinTemplate, listScrollerTemplate, HeaderL
 let favoritesImage = new Texture("assets/star.png");
 
 let foodScreenContainer = Container.template($ => ({
-    left:0, right: 0, top: 45, bottom: 65,
+    left:0, right: 0, top: 45, bottom: 60,
     skin: skinTemplate,
 	contents: [
 		screenTemplate({
@@ -38,7 +38,6 @@ var currentScreen = new foodScreenContainer;
 application.add(currentScreen);
 
 export let changeScreensToProfile = function(data) {
-    trace("yayuh" + JSON.stringify(data) + "\n");
     application.remove(currentScreen);  // Remove the old screen from the application
     currentScreen = new queueProfileScreenContainer(data);  // Make the new screen
     application.add(currentScreen); 
@@ -46,29 +45,32 @@ export let changeScreensToProfile = function(data) {
 
 
 var TopButton = Container.template($ => ({
-    active: true, top: 0, bottom: 0, left: $.left, width: 70,
-    behavior: Behavior({
-        onCreate: function(content){
-            this.upSkin = new Skin({
-                fill: "#C4C4C4", 
-            });
-            this.downSkin = new Skin({
-                fill: "#575757", 
-            });
-            content.skin = this.upSkin;
-        },
-        onTouchBegan: function(content){
-            // content.skin = this.downSkin;
-        },
-        onTouchEnded: function(content){
-            content.skin = this.upSkin;
-            application.remove(currentScreen);  // Remove the old screen from the application
-            currentScreen = new $.nextScreen;  // Make the new screen
-            application.add(currentScreen);  // Add the new screen to the application
-        },
-    }),
+    active: false, top: 0, bottom: 0, left: $.left, width: 70,
+    // behavior: Behavior({
+    //     // onCreate: function(content){
+    //     //     this.upSkin = new Skin({
+    //     //         fill: "#C4C4C4", 
+    //     //     });
+    //     //     this.downSkin = new Skin({
+    //     //         fill: "#575757", 
+    //     //     });
+    //     //     content.skin = this.upSkin;
+    //     },
+    //     onTouchBegan: function(content){
+    //         // content.skin = this.downSkin;
+    //     },
+    //     onTouchEnded: function(content){
+    //         // content.skin = this.upSkin;
+    //         // application.remove(currentScreen);  // Remove the old screen from the application
+    //         // currentScreen = new $.nextScreen;  // Make the new screen
+    //         // application.add(currentScreen);  // Add the new screen to the application
+    //     },
+    // }),
    contents: [
-        new Picture({height:22.5,left: 0, url: $.iconURL})
+        new Picture({height:22.5,left: 0, url: $.iconURL,
+        behavior: Behavior({
+
+        })})
    ]
 }));
 
@@ -78,9 +80,17 @@ var topBar = new Line({ top: 0, height: 45, left: 0, width: 480,
         new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}),
         new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}),
         new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}),
-    ]
+    ],
+    behavior: Behavior({
+        reAddIcons: function(line) {
+            trace(JSON.stringify(line) + "line\n");
+            line.add(new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}));
+            line.add(new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}));
+            line.add(new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}));
+        }
+    })
 });
-application.add(topBar);
+
 
 var NavButton = Container.template($ => ({
     active: true, top: 0, bottom: 0, right: 0, left: 0,
@@ -117,7 +127,7 @@ var NavButton = Container.template($ => ({
    ]
 }));
 
-var navBar = new Line({ bottom: 0, height: 65, left: 0, right: 0,
+var navBar = new Line({ bottom: 0, height: 60, left: 0, right: 0,
     skin: new Skin({ fill: "#C4C4C4" }),
     contents: [
         new NavButton({ iconURL: "assets/star.png", nextScreen: favoritesScreenContainer}),
@@ -129,6 +139,7 @@ var navBar = new Line({ bottom: 0, height: 65, left: 0, right: 0,
 });
 
 // END NAVBAR
+application.add(topBar);
 application.add(navBar);
 
 /*
