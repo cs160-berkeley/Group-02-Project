@@ -82,12 +82,12 @@ var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
         new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}),
     ],
     behavior: Behavior({
-        reAddIcons: function(line) {
-            trace(JSON.stringify(line) + "line\n");
-            line.add(new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}));
-            line.add(new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}));
-            line.add(new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}));
-        }
+        // reAddIcons: function(line) {
+        //     trace(JSON.stringify(line) + "line\n");
+        //     line.add(new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}));
+        //     line.add(new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}));
+        //     line.add(new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}));
+        // }
     })
 });
 
