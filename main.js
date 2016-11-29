@@ -34,10 +34,12 @@ let foodScreenContainer = Container.template($ => ({
 }));
 
 
-var currentScreen = new foodScreenContainer;
+export var currentScreen = new foodScreenContainer;
+export var prevScreen = currentScreen;
 application.add(currentScreen);
 
 export let changeScreensToProfile = function(data) {
+    prevScreen = currentScreen;
     application.remove(currentScreen);  // Remove the old screen from the application
     currentScreen = new queueProfileScreenContainer(data);  // Make the new screen
     application.add(currentScreen); 

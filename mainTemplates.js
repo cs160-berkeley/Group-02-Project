@@ -41,7 +41,7 @@ let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
 
-import {changeScreensToProfile} from 'main';
+import {prevScreen, currentScreen, changeScreensToProfile} from 'main';
 
 // IMPORT scrollers
 import {
@@ -305,6 +305,9 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										behavior: Behavior({
 												onTouchEnded: function(content) {
 													trace("Eddie put your code here \n");
+													application.remove(currentScreen);
+													currentScreen = prevScreen;
+													application.add(currentScreen);
 												}
 											})
 										})
