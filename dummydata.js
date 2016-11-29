@@ -1,24 +1,4 @@
 export var favoritesQueuesData = [
-   {queueName:'Bud Light Station', location:'Area 4', queueLength:22, 
-           comments:[
-               {time: '10:20am', name:'Abhi Rai', comment:'Great BudLight, worth the wait', favoriteURL: "assets/star.png"},
-               {time: '10:20am', name:'Abhi Rai', comment:'Great BudLight, worth the wait', favoriteURL: "assets/star.png"},
-               {time: '10:20am', name:'Abhi Rai', comment:'Ok beer but was expensive', favoriteURL: "assets/star.png"},
-           ]
-   },
-  { queueName:'What the Pho', location:'Area 1', queueLength:34, 
-           comments:[
-               {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait', favoriteURL: "assets/star.png"},
-               {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait', favoriteURL: "assets/star.png"},
-           ]
-   },
-    { queueName:'Restroom Area 3 (W)', location:'Area 1', queueLength:34, 
-           comments:[
-               {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait', favoriteURL: "assets/star.png"},
-               {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait', favoriteURL: "assets/star.png"},
-           ]
-   }
-
 ]
 
 export var foodQueuesData = [

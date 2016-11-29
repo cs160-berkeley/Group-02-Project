@@ -312,16 +312,38 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 									contents:[
 										new Picture({
 											active: true,
-											height:30, url: "assets/star.png",
+											height:30,
 											behavior: Behavior({
+												onCreate: function(label) {
+													if ('favorited' in $) {
+														if ($.favorited = true) {
+															label.url = "assets/yellow-star.png";
+														} else {
+															label.url = "assets/star.png";e
+														}
+													} else {
+														label.url = "assets/star.png";
+													}
+
+												},
 												onTouchEnded: function(content) {
 													trace("clickity\n");
 													trace(content.url + "\n");
-													if (content.url == "file:///Users/eddieconk/Library/Preferences//fsk/1/embedShell/applications/com.marvell.kinoma.project.queuetip/assets/star.png") {
-														content.url = "file:///Users/eddieconk/Library/Preferences//fsk/1/embedShell/applications/com.marvell.kinoma.project.queuetip/assets/yellow-star.png";
-														favoritesQueuesData.push($);
+													if ('favorited' in $) {
+														if ($.favorited == false) {
+															content.url = "assets/yellow-star.png";
+															favoritesQueuesData.push($);
+															$.favorited = true;
+														} else {
+															content.url = "assets/star.png";
+															$.favorited = false;
+															var index = favoritesQueuesData.indexOf($);
+															Array.splice(favoritesQueuesData, index);
+														}
 													} else {
-														content.url = "file:///Users/eddieconk/Library/Preferences//fsk/1/embedShell/applications/com.marvell.kinoma.project.queuetip/assets/star.png";
+														content.url = "assets/yellow-star.png";
+														favoritesQueuesData.push($);
+														$.favorited = true;
 													}
 												}
 											})
@@ -331,7 +353,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										onTouchEnded: function(content) {
 											// trace("clickity\n");
 											application.distribute("changeStar", $);
-											
 										}
 									})
 								})
