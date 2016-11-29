@@ -77,9 +77,8 @@ var TopButton = Container.template($ => ({
 var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
     skin: new Skin({ fill: "#ff8a2b" }), // # c4c4c4 gray before, now orange
     contents: [
-        new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}),
-        new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}),
-        new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}),
+        new TopButton({ iconURL: "assets/map.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
+        new TopButton({ iconURL: "assets/search.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
     ],
     behavior: Behavior({
         // reAddIcons: function(line) {
