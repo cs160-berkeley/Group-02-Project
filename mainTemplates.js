@@ -299,7 +299,14 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 							contents:[
 								new Column({ left:0, width:70,
 									contents:[
-										new Picture({height:30, url: "assets/back.png"})
+										new Picture({height:30, url: "assets/back.png",
+										active:true,
+										behavior: Behavior({
+												onTouchEnded: function(content) {
+													trace("Eddie put your code here \n");
+												}
+											})
+										})
 									]
 								}),
 								new Column({ left:0, width:180,
@@ -327,8 +334,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 
 												},
 												onTouchEnded: function(content) {
-													trace("clickity\n");
-													trace(content.url + "\n");
 													if ('favorited' in $) {
 														if ($.favorited == false) {
 															content.url = "assets/yellow-star.png";
@@ -351,7 +356,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 									],
 									behavior: Behavior({
 										onTouchEnded: function(content) {
-											// trace("clickity\n");
 											application.distribute("changeStar", $);
 										}
 									})
