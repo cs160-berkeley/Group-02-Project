@@ -367,14 +367,14 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 						new Column({skin:bottomBorderSkin, width: 100, 
 							contents:[
 								new Label({style:bodyNumberStyle, string: $.queueLength}),
-								new Label({style:bodyStyle, bottom:10, string:"min wait"}),
+								new Label({style:bodyStyle, bottom:10, string:"minute wait"}),
 							]
 						}),
 						// Minutes to reach block
 						new Column({skin:bottomBorderSkin, width:100, top:10, 
 							contents:[
 								new Label({style:bodyNumberStyle, string: "10"}),
-								new Label({style:bodyStyle, bottom:10, 	string:"mins to reach"}),
+								new Label({style:bodyStyle, bottom:10, 	string:"minute walk"}),
 							]
 						}),
 						// Comment block

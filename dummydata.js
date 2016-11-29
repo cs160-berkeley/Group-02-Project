@@ -9,7 +9,7 @@ export var foodQueuesData = [
                {time: '10:20am', name:'Eddie Conk', comment:'Smelled really bad', favoriteURL: "assets/star.png"},
            ]
    },
-   {queueName:'Bud Light Station', location:'Area 4', queueLength:22, 
+   {queueName:'Bud Light', location:'Area 4', queueLength:22, 
            comments:[
                {time: '10:20am', name:'Abhi Rai', comment:'Great BudLight, worth the wait', favoriteURL: "assets/star.png"},
                {time: '10:20am', name:'Abhi Rai', comment:'Great BudLight, worth the wait', favoriteURL: "assets/star.png"},
