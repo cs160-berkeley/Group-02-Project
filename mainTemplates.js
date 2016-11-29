@@ -343,7 +343,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 															content.url = "assets/star.png";
 															$.favorited = false;
 															var index = favoritesQueuesData.indexOf($);
-															Array.splice(favoritesQueuesData, index);
+															favoritesQueuesData.splice(index, 1);
 														}
 													} else {
 														content.url = "assets/yellow-star.png";
