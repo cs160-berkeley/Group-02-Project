@@ -299,14 +299,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 							contents:[
 								new Column({ left:0, width:70,
 									contents:[
-										new Picture({height:30, url: "assets/back.png",
-										active:true,
-										behavior: Behavior({
-												onTouchEnded: function(content) {
-													trace("Eddie put your code here \n");
-												}
-											})
-										})
+										new Picture({height:30, url: "assets/back.png"})
 									]
 								}),
 								new Column({ left:0, width:180,
@@ -323,10 +316,10 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 											behavior: Behavior({
 												onCreate: function(label) {
 													if ('favorited' in $) {
-														if ($.favorited = true) {
+														if ($.favorited == true) {
 															label.url = "assets/yellow-star.png";
 														} else {
-															label.url = "assets/star.png";e
+															label.url = "assets/star.png";
 														}
 													} else {
 														label.url = "assets/star.png";
@@ -334,6 +327,8 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 
 												},
 												onTouchEnded: function(content) {
+													trace("clickity\n");
+													trace(content.url + "\n");
 													if ('favorited' in $) {
 														if ($.favorited == false) {
 															content.url = "assets/yellow-star.png";
@@ -356,6 +351,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 									],
 									behavior: Behavior({
 										onTouchEnded: function(content) {
+											// trace("clickity\n");
 											application.distribute("changeStar", $);
 										}
 									})
