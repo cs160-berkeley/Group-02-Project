@@ -78,7 +78,7 @@ var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
     skin: new Skin({ fill: "#ff8a2b" }), // # c4c4c4 gray before, now orange
     contents: [
         new TopButton({ iconURL: "assets/map.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
-        new TopButton({ iconURL: "assets/search.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
+        new TopButton({ iconURL: "assets/transparent_header_logo_small.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
     ],
     behavior: Behavior({
         // reAddIcons: function(line) {
