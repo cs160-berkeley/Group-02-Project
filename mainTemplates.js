@@ -38,7 +38,7 @@ let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#542403"});
 let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#542403"});
 let commentNameStyle = new Style({font:"15px Roboto", color:"black"});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"black"});
-let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282"});
+let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
 
 import {changeScreensToProfile} from 'main';
@@ -271,14 +271,9 @@ let commentContainer = Container.template($ => ({
 										new Label({style:commentNameStyle, string:$.name})
 									]
 								}),
-								new Column({ left:5, 
+								new Column({right:10, left:0,
 									contents:[
-										new Label({left:5, style:commentTimeStyle, string:$.time }),
-									]
-								}),
-								new Column({ left:0, right:0, 
-									contents:[
-										new Label({right:0, style:commentReplyStyle, string:"Reply"}),
+										new Label({right:0, style:commentTimeStyle, string:$.time }),
 									]
 								}),
 							]
