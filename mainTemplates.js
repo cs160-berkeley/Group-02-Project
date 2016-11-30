@@ -10,9 +10,9 @@ import {
 let placeHolderStyle = new Style({ font: "20px", color: "black" }), 
 
 // Skins
-export let skinTemplate = new Skin({fill: '#fcf3d4'}); // fill in!
-let commentSkin = new Skin({fill:"#F2F2F2" });
-let bottomBorderSkin = new Skin({fill: '#fcf3d4', borders: {left: 0, right: 0, top: 0, bottom: 1}, stroke: "#BDBDBD"});
+export let skinTemplate = new Skin({fill: '#121212'}); // fill in!
+let commentSkin = new Skin({fill:"#252525" });
+let bottomBorderSkin = new Skin({fill: '#121212', borders: {left: 0, right: 0, top: 0, bottom: 1}, stroke: "#BDBDBD"});
 let buttonSkin = new Skin({fill: '#8fc138'});
 
 let nameInputSkin = new Skin({ borders: { left: 0, right: 0, top: 0, bottom: 2 }, stroke: 'gray' });
@@ -24,7 +24,7 @@ let whiteSkin = new Skin({ fill: "white" });
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
-let titleStyle = new Style({font: "bold 32px Roboto", color: "#542403" }); 
+let titleStyle = new Style({font: "bold 32px Roboto", color: "#ff8a2b" }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
 let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
 export let HeaderLabelTemplate = Label.template($ => ({
@@ -33,13 +33,13 @@ export let HeaderLabelTemplate = Label.template($ => ({
 	skin: skinTemplate,
 	style: titleStyle
 }));
-let bodyStyle = new Style({font:"light 17px Roboto", color:"#542403"});
-let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#542403"});
-let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#542403"});
-let commentNameStyle = new Style({font:"15px Roboto", color:"black"});
-let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"black"});
+let bodyStyle = new Style({font:"light 17px Roboto", color:"#ffffff"});
+let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#fcf3d4"});
+let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#ffffff"});
+let commentNameStyle = new Style({font:"15px Roboto", color:"white"});
+let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"white"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
-let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
+let commentReplyStyle = new Style({font:"10px Roboto", color:"white"});
 
 import {prevScreen, currentScreen, changeScreensToProfile} from 'main';
 
@@ -55,10 +55,10 @@ import {favoritesQueuesData, foodQueuesData, restroomQueuesData, merchandiseQueu
 
 
 
-let headerStyle = new Style({ font: "34px", color: "black" }), 
+let headerStyle = new Style({ font: "34px", color: "white" }), 
 let whiteTextStyle = new Style({ font: "34px", color: "white" }), 
 
-let listEntrySkin = new Skin({fill: '#fcf3d4', borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#e0e0e0'})
+let listEntrySkin = new Skin({fill: '#121212', borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#333333'})
 
 
 // START LIST TEMPLATES
@@ -397,7 +397,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										// 	})
 
 										// }),
-										new Label({style:boldBodyStyle, string:"What people are saying"}),
+										new Label({style:boldBodyStyle, bottom:20, string:"What people are saying"}),
 										new Container({ 
 									    width: 250, height: 36, skin: nameInputSkin, contents: [
 											Scroller($, { 
