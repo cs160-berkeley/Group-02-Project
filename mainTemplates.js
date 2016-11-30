@@ -308,7 +308,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 						Picture($, {
 							top: 0,left: 0,height: 215,
 							width: application.width,
-							url: "assets/foodtent.jpg",
+							url: "assets/bg-imgs/foodtent.jpg",
 							Behavior: class extends Behavior{
 								onLoaded(picture) {
 								}
