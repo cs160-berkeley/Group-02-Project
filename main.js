@@ -77,7 +77,7 @@ var TopButton = Container.template($ => ({
 }));
 
 var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
-    skin: new Skin({ fill: "#ff8a2b" }), // # c4c4c4 gray before, now orange
+    skin: new Skin({ fill: "#FF7C02" }), // # c4c4c4 gray before, now orange
     contents: [
         new TopButton({ iconURL: "assets/map.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
         new TopButton({ iconURL: "assets/transparent_header_logo_small.png", left: 50, right: 0, nextScreen: favoritesScreenContainer}),
@@ -98,12 +98,12 @@ var NavButton = Container.template($ => ({
     behavior: Behavior({
         onCreate: function(content){
             this.upSkin = new Skin({
-                fill: "#ff8a2b", 
+                fill: "#FF7C02", 
                 borders: {left: 0, right: 1, top: 0, bottom: 0}, 
                 stroke: "#aeadad"
             });
             this.downSkin = new Skin({
-                fill: "#ef6300", 
+                fill: "#FF7C02", 
                 //borders: {left: 1, right: 1, top: 1, bottom: 1}, 
                 //stroke: "black"
             });
@@ -129,7 +129,7 @@ var NavButton = Container.template($ => ({
 }));
 
 var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
-    skin: new Skin({ fill: "#ff8a2b" }),
+    skin: new Skin({ fill: "#FDCA40" }),
     contents: [
         new NavButton({ iconURL: "assets/star.png", nextScreen: favoritesScreenContainer}),
         new NavButton({ iconURL: "assets/food.png", nextScreen: foodScreenContainer}),

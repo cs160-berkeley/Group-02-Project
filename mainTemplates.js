@@ -10,10 +10,14 @@ import {
 let placeHolderStyle = new Style({ font: "20px", color: "black" }), 
 
 // Skins
-export let skinTemplate = new Skin({fill: '#fcf3d4'}); // fill in!
+export let skinTemplate = new Skin({fill: '#E6E8E6'}); // fill in!
+let blackSkin = new Skin({fill: '#000'})
 let commentSkin = new Skin({fill:"#F2F2F2" });
-let bottomBorderSkin = new Skin({fill: '#fcf3d4', borders: {left: 0, right: 0, top: 0, bottom: 1}, stroke: "#BDBDBD"});
+let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#BDBDBD"});
+let rightBorderSkin = new Skin({borders: {left: 0, right: 1, top: 0, bottom: 0}, stroke: "#BDBDBD"});
 let buttonSkin = new Skin({fill: '#8fc138'});
+let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.5)"});
+
 
 let nameInputSkin = new Skin({ borders: { left: 0, right: 0, top: 0, bottom: 2 }, stroke: 'gray' });
 let fieldStyle = new Style({ color: 'black', font: 'bold 18px', horizontal: 'left',
@@ -24,18 +28,24 @@ let whiteSkin = new Skin({ fill: "white" });
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
-let titleStyle = new Style({font: "bold 32px Roboto", color: "#542403" }); 
+let titleStyle = new Style({font: "bold 32px Roboto", color: "#080708" }); 
+let titleStyleWhite = new Style({font: "bold 32px Roboto", color: "#fff" }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
 let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
+let QueueTitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyleWhite}));
 export let HeaderLabelTemplate = Label.template($ => ({
 	string: $.titleName,
 	height: 48,
 	skin: skinTemplate,
 	style: titleStyle
 }));
-let bodyStyle = new Style({font:"light 17px Roboto", color:"#542403"});
-let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#542403"});
-let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#542403"});
+
+let bodyStyleWhite = new Style({font:"light 36px Roboto", color:"#fff"});
+let bodyNumberStyleWhite = new Style({font:"bold 48px Roboto", color:"#fff"});
+let boldBodyStyleWhite = new Style({font:"bold 17px Roboto", color:"#fff"});
+let bodyStyle = new Style({font:"light 17px Roboto", color:"#080708"});
+let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#080708"});
+let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#080708"});
 let commentNameStyle = new Style({font:"15px Roboto", color:"black"});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"black"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
@@ -58,7 +68,7 @@ import {favoritesQueuesData, foodQueuesData, restroomQueuesData, merchandiseQueu
 let headerStyle = new Style({ font: "34px", color: "black" }), 
 let whiteTextStyle = new Style({ font: "34px", color: "white" }), 
 
-let listEntrySkin = new Skin({fill: '#fcf3d4', borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#e0e0e0'})
+let listEntrySkin = new Skin({fill: '#E6E8E6', borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#697268'})
 
 
 // START LIST TEMPLATES
@@ -292,206 +302,232 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-				new Column({
-					left:0, right:0, 
-					contents:[
-						new Line({
-							top:10, left:0, bottom: 15,
+				new Container({
+					top: 0, left: 0, right: 0,
+					contents: [
+						Picture($, {
+							top: 0,left: 0,height: 215,
+							width: application.width,
+							url: "assets/foodtent.jpg",
+							Behavior: class extends Behavior{
+								onLoaded(picture) {
+								}
+							}
+						}),
+						Container($, {
+							skin: blackSkinTrans,
+							height: application.height,
+							top: 0,
+							width: 460,
+							height: 215
+						}),
+						new Column({
+							left:0, right:0, 
 							contents:[
-								new Column({ left:0, width:70,
+								new Line({
+									top:10, left:0, bottom: 15,
 									contents:[
-										new Picture({height:30, url: "assets/back.png",
-										active:true,
-										behavior: Behavior({
-												onTouchEnded: function(content) {
-													trace("Eddie put your code here \n");
-													application.remove(currentScreen);
-													currentScreen = prevScreen;
-													application.add(currentScreen);
-												}
-											})
-										})
-									]
-								}),
-								new Column({ left:0, width:180,
-									contents:[
-										new TitleLabelTemplate({titleName: $.queueName})
-									]
-								}),
-								new Column ({left:5,right:0, width:70,
-									active: true,
-									contents:[
-										new Picture({
+										new Column({ left:0, width:70,
+											contents:[
+												new Picture({height:30, url: "assets/back.png",
+												active:true,
+												behavior: Behavior({
+														onTouchEnded: function(content) {
+															trace("Eddie put your code here \n");
+															application.remove(currentScreen);
+															currentScreen = prevScreen;
+															application.add(currentScreen);
+														}
+													})
+												})
+											]
+										}),
+										new Column({ left:0, width:180,
+											contents:[
+												new QueueTitleLabelTemplate({titleName: $.queueName})
+											]
+										}),
+										new Column ({left:5,right:0, width:70,
 											active: true,
-											height:30,
-											behavior: Behavior({
-												onCreate: function(label) {
-													if ('favorited' in $) {
-														if ($.favorited == true) {
-															label.url = "assets/yellow-star.png";
-														} else {
-															label.url = "assets/star.png";
-														}
-													} else {
-														label.url = "assets/star.png";
-													}
+											contents:[
+												new Picture({
+													active: true,
+													height:30,
+													behavior: Behavior({
+														onCreate: function(label) {
+															if ('favorited' in $) {
+																if ($.favorited == true) {
+																	label.url = "assets/yellow-star.png";
+																} else {
+																	label.url = "assets/star.png";
+																}
+															} else {
+																label.url = "assets/star.png";
+															}
 
-												},
-												onTouchEnded: function(content) {
-													if ('favorited' in $) {
-														if ($.favorited == false) {
-															content.url = "assets/yellow-star.png";
-															favoritesQueuesData.push($);
-															$.favorited = true;
-														} else {
-															content.url = "assets/star.png";
-															$.favorited = false;
-															var index = favoritesQueuesData.indexOf($);
-															favoritesQueuesData.splice(index, 1);
+														},
+														onTouchEnded: function(content) {
+															if ('favorited' in $) {
+																if ($.favorited == false) {
+																	content.url = "assets/yellow-star.png";
+																	favoritesQueuesData.push($);
+																	$.favorited = true;
+																} else {
+																	content.url = "assets/star.png";
+																	$.favorited = false;
+																	var index = favoritesQueuesData.indexOf($);
+																	favoritesQueuesData.splice(index, 1);
+																}
+															} else {
+																content.url = "assets/yellow-star.png";
+																favoritesQueuesData.push($);
+																$.favorited = true;
+															}
 														}
-													} else {
-														content.url = "assets/yellow-star.png";
-														favoritesQueuesData.push($);
-														$.favorited = true;
-													}
+													})
+												})
+											],
+											behavior: Behavior({
+												onTouchEnded: function(content) {
+													application.distribute("changeStar", $);
 												}
 											})
 										})
-									],
-									behavior: Behavior({
-										onTouchEnded: function(content) {
-											application.distribute("changeStar", $);
-										}
-									})
+									]
+								}),
+								// Minutes to wait block
+								new Line({
+									left: 0, right: 0, top: 20,
+									contents: [
+										new Column({skin:rightBorderSkin, left: 30, right: 0,
+											contents:[
+												new Label({style:bodyNumberStyleWhite, string: $.queueLength}),
+												new Label({style:bodyStyleWhite, bottom:10, string:"minute wait"}),
+											]
+										}),
+										// Minutes to reach block
+										new Column({left: 0, right: 30, 
+											contents:[
+												new Label({style:bodyNumberStyleWhite, string: "10"}),
+												new Label({style:bodyStyleWhite, bottom:10, 	string:"minute walk"}),
+											]
+										})
+									]
+								}),
+								// Comment block
+								Container($, {
+									left: 0, right: 0, top: 60,
+									contents: [
+										new Column({
+											top:25, left:0, right:0, editable: true, clip: true,
+											contents:[
+												// new Container({
+												// 	active: true, left: 90, right: 90, bottom: 15, top: 0, height: 30, skin: buttonSkin,
+												// 	contents: [new Label({ string: 'new comment', style: buttonStyle })],
+												// 	behavior: Behavior({
+												// 		onTouchEnded: function(content, id, x, y, ticks) {
+												// 			application.distribute("newComment", $);
+												// 		}
+												// 	})
+
+												// }),
+												new Label({style:boldBodyStyle, string:"What people are saying"}),
+												new Container({ 
+											    width: 250, height: 36, skin: nameInputSkin, contents: [
+													Scroller($, { 
+											            left: 0, right: 0, height: 30, active: true, 
+											            clip: true, 
+											            contents: [
+											                Text($, { 
+											                    left: 0, right: 0, top: 0, skin: fieldLabelSkin, 
+											                    style: fieldStyle, anchor: 'NAME',
+											                    editable: true, string: "",
+											                    Behavior: class extends FieldLabelBehavior {
+											                        onEdited(label) {
+											                            let data = this.data;
+											                            data.name = label.string;
+											                            label.container.hint.visible = (data.name.length == 0);
+											                            trace(data.name+"\n");
+											                            application.distribute("textTyped", data.name);
+											                        }
+											                        getComment(label) {
+											                        	application.distribute("onCommentSubmitted", label.string);
+											                        	application.bubble("onCommentSubmitted", label.string);
+											                        }
+											                        onCommentSubmitted(label) {
+											                        	label.string = "";
+											                        	label.container.hint.visible = 1;
+											                        }
+											                    },
+											                }),
+											                Label($, {
+											                    left: 0, right: 0, top: 0, style: fieldHintStyle,
+											                    string: "Tap to add new comment...", name: "hint"
+											                }),
+											            ],
+											            Behavior: FieldScrollerBehavior
+											        }),
+												]}),
+												new Container({
+													active: true, left: 70, right: 70, top: 0, bottom: 10, top: 10, height: 0, skin: buttonSkin, visible: false,
+													contents: [new Label({ string: 'submit comment', style: buttonStyle })],
+													behavior: Behavior({
+														onTouchEnded: function(content, id, x, y, ticks) {
+															application.distribute("getComment");
+														},
+														textTyped: function(container, data) {
+															container.visible = (data.length != 0);
+															if (container.visible) {
+																// container.top = 10;
+																// container.bottom = 10;
+																container.height = 30;
+															}
+														},
+														onCommentSubmitted: function(container, data) {
+															container.visible = 0;
+															container.height = 0;
+														}
+													})
+
+												}),
+												$.comments.map(comment => 
+													new commentContainer({name:comment.name, time: "Today at "+comment.time, comment:comment.comment}))
+											],
+											behavior: Behavior({
+										        onCommentSubmitted: function(container, data) {
+										        	var date = new Date;
+										        	var hour = date.getHours();
+										        	var minutes = date.getMinutes();
+										        	var AMPM = "AM";
+										        	if (hour > 12) {
+										        		AMPM = "PM";
+										        	}
+										        	var commentObj = {name:"Me", time: "Today at " + (hour % 12) + ":" + minutes + AMPM, comment: data};
+										            var newComment = new commentContainer(commentObj);
+										            // trace("WHACK: " + JSON.stringify($.comments) + "\n");
+										            var index = 
+										            $.comments.push(commentObj);
+										            trace("WHACK: " + JSON.stringify($.comments) + "\n");
+										            container.add(newComment);
+										        },
+										        onTouchEnded: function(container, data) {
+										        	trace("yes\n");
+										            //content.skin = this.upSkin;
+										            changeScreensToProfile($.data); // Add the new screen to the application
+										            trace("hello\n");
+										        }
+										    })
+									    })
+										
+									]
 								})
 							]
-						}),
-						// Minutes to wait block
-						new Column({skin:bottomBorderSkin, width: 100, 
-							contents:[
-								new Label({style:bodyNumberStyle, string: $.queueLength}),
-								new Label({style:bodyStyle, bottom:10, string:"minute wait"}),
-							]
-						}),
-						// Minutes to reach block
-						new Column({skin:bottomBorderSkin, width:100, top:10, 
-							contents:[
-								new Label({style:bodyNumberStyle, string: "10"}),
-								new Label({style:bodyStyle, bottom:10, 	string:"minute walk"}),
-							]
-						}),
-						// Comment block
-						Container($, {
-							left: 0, right: 0, top: 0,
-							contents: [
-								new Column({
-									top:25, left:0, right:0, editable: true, clip: true,
-									contents:[
-										// new Container({
-										// 	active: true, left: 90, right: 90, bottom: 15, top: 0, height: 30, skin: buttonSkin,
-										// 	contents: [new Label({ string: 'new comment', style: buttonStyle })],
-										// 	behavior: Behavior({
-										// 		onTouchEnded: function(content, id, x, y, ticks) {
-										// 			application.distribute("newComment", $);
-										// 		}
-										// 	})
-
-										// }),
-										new Label({style:boldBodyStyle, string:"What people are saying"}),
-										new Container({ 
-									    width: 250, height: 36, skin: nameInputSkin, contents: [
-											Scroller($, { 
-									            left: 0, right: 0, height: 30, active: true, 
-									            clip: true, 
-									            contents: [
-									                Text($, { 
-									                    left: 0, right: 0, top: 0, skin: fieldLabelSkin, 
-									                    style: fieldStyle, anchor: 'NAME',
-									                    editable: true, string: "",
-									                    Behavior: class extends FieldLabelBehavior {
-									                        onEdited(label) {
-									                            let data = this.data;
-									                            data.name = label.string;
-									                            label.container.hint.visible = (data.name.length == 0);
-									                            trace(data.name+"\n");
-									                            application.distribute("textTyped", data.name);
-									                        }
-									                        getComment(label) {
-									                        	application.distribute("onCommentSubmitted", label.string);
-									                        	application.bubble("onCommentSubmitted", label.string);
-									                        }
-									                        onCommentSubmitted(label) {
-									                        	label.string = "";
-									                        	label.container.hint.visible = 1;
-									                        }
-									                    },
-									                }),
-									                Label($, {
-									                    left: 0, right: 0, top: 0, style: fieldHintStyle,
-									                    string: "Tap to add new comment...", name: "hint"
-									                }),
-									            ],
-									            Behavior: FieldScrollerBehavior
-									        }),
-										]}),
-										new Container({
-											active: true, left: 70, right: 70, top: 0, bottom: 10, top: 10, height: 0, skin: buttonSkin, visible: false,
-											contents: [new Label({ string: 'submit comment', style: buttonStyle })],
-											behavior: Behavior({
-												onTouchEnded: function(content, id, x, y, ticks) {
-													application.distribute("getComment");
-												},
-												textTyped: function(container, data) {
-													container.visible = (data.length != 0);
-													if (container.visible) {
-														// container.top = 10;
-														// container.bottom = 10;
-														container.height = 30;
-													}
-												},
-												onCommentSubmitted: function(container, data) {
-													container.visible = 0;
-													container.height = 0;
-												}
-											})
-
-										}),
-										$.comments.map(comment => 
-											new commentContainer({name:comment.name, time: "Today at "+comment.time, comment:comment.comment}))
-									],
-									behavior: Behavior({
-								        onCommentSubmitted: function(container, data) {
-								        	var date = new Date;
-								        	var hour = date.getHours();
-								        	var minutes = date.getMinutes();
-								        	var AMPM = "AM";
-								        	if (hour > 12) {
-								        		AMPM = "PM";
-								        	}
-								        	var commentObj = {name:"Me", time: "Today at " + (hour % 12) + ":" + minutes + AMPM, comment: data};
-								            var newComment = new commentContainer(commentObj);
-								            // trace("WHACK: " + JSON.stringify($.comments) + "\n");
-								            var index = 
-								            $.comments.push(commentObj);
-								            trace("WHACK: " + JSON.stringify($.comments) + "\n");
-								            container.add(newComment);
-								        },
-								        onTouchEnded: function(container, data) {
-								        	trace("yes\n");
-								            //content.skin = this.upSkin;
-								            changeScreensToProfile($.data); // Add the new screen to the application
-								            trace("hello\n");
-								        }
-								    })
-							    })
-								
-							]
 						})
+					], 
+					name:'queueProfileScreen',
+				})
 					]
 				})
-			], 
-			name:'queueProfileScreen',
-		})
 	],
 	behavior: Behavior({
 		newComment: function(container) {
