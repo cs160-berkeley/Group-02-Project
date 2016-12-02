@@ -140,7 +140,6 @@ let listEntryColumnTemplate = Column.template($ => ({
             // container.skin = data.newSkin;
         },
         onTouchEnded: function(container, data) {
-        	trace("yes\n");
             //content.skin = this.upSkin;
             changeScreensToProfile($.data); // Add the new screen to the application
         }
@@ -218,17 +217,17 @@ export let screenTemplate = Column.template($ => ({
 
 // export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
 let emptyQueueText = Column.template($ => ({
-	top: 30, left: 0, right: 0,
+	top: 0, left: 0, right: 0,
 	contents: [
 		Text($, {
-			string:"no favorites to show",
+			string:"No favorites to show",
 			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
 		),
 		Picture($, {
 			top: 30, height:180, url: "assets/star_large.png"
 		}),
 		Text($, {
-			string:"click the star icon on a queue to favorite it",
+			string:"Click the star icon on a queue to favorite it",
 			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
 		)
 
@@ -384,7 +383,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 															active:true,
 															behavior: Behavior({
 																	onTouchEnded: function(content) {
-																		trace("Eddie put your code here \n");
 																		application.remove(currentScreen);
 																		currentScreen = prevScreen;
 																		application.add(currentScreen);
@@ -416,10 +414,10 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 																if ($.favorited == true) {
 																	label.url = "assets/yellow-star.png";
 																} else {
-																	label.url = "assets/star.png";
+																	label.url = "assets/star-white.png";
 																}
 															} else {
-																label.url = "assets/star.png";
+																label.url = "assets/star-white.png";
 															}
 
 														},
@@ -520,7 +518,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 											                            let data = this.data;
 											                            data.name = label.string;
 											                            label.container.hint.visible = (data.name.length == 0);
-											                            trace(data.name+"\n");
 											                            application.distribute("textTyped", data.name);
 											                        }
 											                        getComment(label) {
@@ -577,17 +574,13 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										        	}
 										        	var commentObj = {name:"Me", time: "Today at " + (hour % 12) + ":" + minutes + AMPM, comment: data};
 										            var newComment = new commentContainer(commentObj);
-										            // trace("WHACK: " + JSON.stringify($.comments) + "\n");
 										            var index = 
 										            $.comments.push(commentObj);
-										            trace("WHACK: " + JSON.stringify($.comments) + "\n");
 										            container.add(newComment);
 										        },
 										        onTouchEnded: function(container, data) {
-										        	trace("yes\n");
 										            //content.skin = this.upSkin;
 										            changeScreensToProfile($.data); // Add the new screen to the application
-										            trace("hello\n");
 										        }
 										    })
 									    })
