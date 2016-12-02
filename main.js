@@ -141,24 +141,9 @@ var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
     ]
 });
 
+
 // END NAVBAR
 application.add(topBar);
 application.add(navBar);
 
-/*
-// Main wrapper! Exported to main.js
-var mainContainer = new Column(
-	{
-		name:'mainContainer', top:0, bottom:0, left:0, right:0,
-		contents : [
-			new Label({string:'asdfasdf'}),
-			navBar
-			
-		]
-		
-	}
-);
-
-//application.add(mainContainer);
-
- */
+//application.distribute("onUpdateButtonSkin", navBar.contents[0].upSkin);
