@@ -17,6 +17,15 @@ export let titleColor = "#F2D653" //yellow
 // export let titleColor = "#ff8a2b" // orange
 
 
+
+// *********************************
+// *  Different list font sizes here *
+// *********************************
+
+
+	
+
+
 let bodyColor = "#FFF"
 let boldBodyColor = "#FFF"
 let bodyNumberColor = "#FFF"
@@ -71,6 +80,8 @@ let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:c
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
 let commentsTitleStyle = new Style({font:"bold 24px Roboto", color:titleColor});
+
+let greyedTextStyle = new Style({font: "bold 24px Roboto", color: "#3a3a3a"})
 
 var shadowEffect = new Effect;
 shadowEffect.outerShadow(null, 1, 2, 0, 2);
@@ -206,10 +217,23 @@ export let screenTemplate = Column.template($ => ({
 
 
 // export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
-let emptyQueueText = Text.template($ => ({
-		string:"Click the Star icon on a queue to save it here!",
-		style:boldBodyStyle, right:10, left:10,top:20,bottom:0})
-	)
+let emptyQueueText = Column.template($ => ({
+	top: 30, left: 0, right: 0,
+	contents: [
+		Text($, {
+			string:"no favorites to show",
+			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
+		),
+		Picture($, {
+			top: 30, height:180, url: "assets/star_large.png"
+		}),
+		Text($, {
+			string:"click the star icon on a queue to favorite it",
+			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
+		)
+
+	]
+}))
 
 export let favoritesScreenContainer = Container.template($ => ({
 	left:0, right: 0, top: 35, bottom: 50, clip: true,
