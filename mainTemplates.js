@@ -13,7 +13,7 @@ import {
 // export let titleColor = "#C2E9FD" // "diamond" blue
 // export let titleColor = "#C3A1E2" // purple
 // export let titleColor = "#DA2C38" // red
-export let titleColor = "#F2D653" //yellow
+export let titleColor = "#F2D653" //yellowdd
 // export let titleColor = "#ff8a2b" // orange
 
 
@@ -76,9 +76,9 @@ let bodyStyle = new Style({font:"light 17px Roboto", color:bodyColor});
 let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:bodyNumberColor});
 let boldBodyStyle = new Style({font:"bold 17px Roboto", color:boldBodyColor});
 let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyColor});
-let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:commentNameAndBodyColor});
+let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"#A2A77F"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
-let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
+// let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
 let commentsTitleStyle = new Style({font:"bold 24px Roboto", color:titleColor});
 
 let greyedTextStyle = new Style({font: "bold 24px Roboto", color: "#3a3a3a"})
@@ -428,7 +428,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 																	favoritesQueuesData.push($);
 																	$.favorited = true;
 																} else {
-																	content.url = "assets/star.png";
+																	content.url = "assets/star-white.png";
 																	$.favorited = false;
 																	var index = favoritesQueuesData.indexOf($);
 																	favoritesQueuesData.splice(index, 1);

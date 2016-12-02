@@ -58,13 +58,13 @@ export var restroomQueuesData = [
 
 export var merchandiseQueuesData = [
    {
-    queueName:'Merchandise Tent', location:'Area 2', queueLength:2,picURL: 'assets/bg-imgs/merch.jpg',
+    queueName:'Merchandise', location:'Area 2', queueLength:2,picURL: 'assets/bg-imgs/merch.jpg',
            comments:[
                {time: '10:20am', name:'Jasper', comment:'Great merch, worth the wait', favoriteURL: "assets/star.png"},
                {time: '10:20am', name:'Eddie Conk', comment:'Tshirts fit true to size', favoriteURL: "assets/star.png"},
            ]
    },
-   {queueName:'Merchandise Tent', location:'Area 4', queueLength:45, picURL: 'assets/bg-imgs/merch.jpg',
+   {queueName:'Merch Tent', location:'Area 4', queueLength:45, picURL: 'assets/bg-imgs/merch.jpg',
            comments:[
                {time: '10:20am', name:'Abhi Rai', comment:'Terrible line', favoriteURL: "assets/star.png"},
                {time: '10:20am', name:'Andy Carle', comment:'NOT WORTH IT STAY AWAY', favoriteURL: "assets/star.png"},
