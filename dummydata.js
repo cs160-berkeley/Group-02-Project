@@ -3,7 +3,7 @@ export var favoritesQueuesData = [
 
 export var foodQueuesData = [
    {
-       queueName:'BurritoTent', location:'Area 2', queueLength:2, 
+       queueName:'Burrito Tent', location:'Area 2', queueLength:2, 
            comments:[
                {time: '10:20am', name:'Abhi Rai', comment:'Great burrito, worth the wait', favoriteURL: "assets/star.png"},
                {time: '10:20am', name:'Eddie Conk', comment:'Smelled really bad', favoriteURL: "assets/star.png"},

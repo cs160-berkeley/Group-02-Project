@@ -6,7 +6,17 @@ import {
 } from 'field';
 
 // Themes
-let titleColor = "#ff8a2b"
+// *********************************
+// *  Different theme colors here *
+// *********************************
+
+// export let titleColor = "#C2E9FD" // "diamond" blue
+// export let titleColor = "#C3A1E2" // purple
+// export let titleColor = "#DA2C38" // red
+export let titleColor = "#F2D653" //yellow
+// export let titleColor = "#ff8a2b" // orange
+
+
 let bodyColor = "#FFF"
 let boldBodyColor = "#FFF"
 let bodyNumberColor = "#FFF"
@@ -27,7 +37,7 @@ let commentSkin = new Skin({fill:commentBackgroundColor });
 let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#000"});
 let rightBorderSkin = new Skin({borders: {left: 0, right: 1, top: 0, bottom: 0}, stroke: "#BDBDBD"});
 let buttonSkin = new Skin({fill: '#8fc138'});
-let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.35)"});
+let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.5)"});
 
 
 let nameInputSkin = new Skin({ borders: { left: 0, right: 0, top: 0, bottom: 2 }, stroke: 'gray' });
@@ -39,7 +49,7 @@ let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', 
 
 // Style templates
 let titleStyle = new Style({font: "bold 32px Roboto", color: titleColor }); 
-let titleStyleWhite = new Style({font: "bold 32px Roboto", color: "#fff" }); 
+let titleStyleWhite = new Style({font: "bold 32px Roboto", color: '#fff' }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
 let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
 let QueueTitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyleWhite}));
@@ -60,10 +70,10 @@ let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyC
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:commentNameAndBodyColor});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
-let commentsTitleStyle = new Style({font:"bold 24px Roboto", color:boldBodyColor});
+let commentsTitleStyle = new Style({font:"bold 24px Roboto", color:titleColor});
 
 var shadowEffect = new Effect;
-shadowEffect.outerShadow('black', 1, 2, 0, 2);
+shadowEffect.outerShadow(null, 1, 2, 0, 2);
 
 
 import {prevScreen, currentScreen, changeScreensToProfile} from 'main';

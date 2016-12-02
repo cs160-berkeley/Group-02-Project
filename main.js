@@ -16,11 +16,11 @@
  */
 
 // Themes
-let iconBorderColor = "#ff8a2b"
 // START NAVBAR
 import {foodQueuesData} from 'dummydata';
-import {queueProfileScreenContainer, skinTemplate, listScrollerTemplate, HeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
+import {titleColor, queueProfileScreenContainer, skinTemplate, listScrollerTemplate, HeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
 let favoritesImage = new Texture("assets/star.png");
+let iconBorderColor = titleColor
 
 let foodScreenContainer = Container.template($ => ({
     left:0, right: 0, top: 35, bottom: 50,
@@ -126,12 +126,12 @@ var NavButton = Container.template($ => ({
         }
     }),
    contents: [
-        new Picture({height:30, left: 0, right: 0, url: $.iconURL})
+        new Picture({height:26, left: 0, right: 0, url: $.iconURL})
    ]
 }));
 
 var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
-    skin: new Skin({ fill: "#282828" }),
+    skin: new Skin({ fill: "#282828"}),
     contents: [
         new NavButton({ iconURL: "assets/star-white.png", nextScreen: favoritesScreenContainer}),
         new NavButton({ iconURL: "assets/food-white.png", nextScreen: foodScreenContainer}),
