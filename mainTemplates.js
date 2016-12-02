@@ -27,13 +27,13 @@ let commentSkin = new Skin({fill:commentBackgroundColor });
 let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#000"});
 let rightBorderSkin = new Skin({borders: {left: 0, right: 1, top: 0, bottom: 0}, stroke: "#BDBDBD"});
 let buttonSkin = new Skin({fill: '#8fc138'});
-let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.5)"});
+let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.35)"});
 
 
 let nameInputSkin = new Skin({ borders: { left: 0, right: 0, top: 0, bottom: 2 }, stroke: 'gray' });
-let fieldStyle = new Style({ color: 'black', font: 'bold 18px', horizontal: 'left',
+let fieldStyle = new Style({ color: 'white', font: 'bold 16px', horizontal: 'left',
     vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
-let fieldHintStyle = new Style({ color: '#aaa', font: '18px', horizontal: 'left',
+let fieldHintStyle = new Style({ color: '#aaa', font: '16px', horizontal: 'left',
     vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
@@ -50,8 +50,8 @@ export let HeaderLabelTemplate = Label.template($ => ({
 	style: titleStyle
 }));
 
-let bodyStyleWhite = new Style({font:"light 36px Roboto", color:"#fff"});
-let bodyNumberStyleWhite = new Style({font:"bold 48px Roboto", color:"#fff"});
+let bodyStyleWhite = new Style({font:"light 42px Roboto", color:"#fff"});
+let bodyNumberStyleWhite = new Style({font:"bold 54px Roboto", color:"#fff"});
 let boldBodyStyleWhite = new Style({font:"bold 17px Roboto", color:"#fff"});
 let bodyStyle = new Style({font:"light 17px Roboto", color:bodyColor});
 let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:bodyNumberColor});
@@ -60,9 +60,10 @@ let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyC
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:commentNameAndBodyColor});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
+let commentsTitleStyle = new Style({font:"bold 24px Roboto", color:boldBodyColor});
 
 var shadowEffect = new Effect;
-shadowEffect.outerShadow(null, 1, 2, 0, 2);
+shadowEffect.outerShadow('black', 1, 2, 0, 2);
 
 
 import {prevScreen, currentScreen, changeScreensToProfile} from 'main';
@@ -320,7 +321,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 					top: 0, left: 0, right: 0,
 					contents: [
 						Picture($, {
-							top: 0,left: 0,height: 170, aspect: 'fill',
+							top: 0,left: 0,height: 190, aspect: 'fill',
 							width: application.width,
 							url: "assets/bg-imgs/foodtent.jpg",
 							Behavior: class extends Behavior{
@@ -333,7 +334,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 							height: application.height,
 							top: 0,
 							width: 460,
-							height: 170
+							height: 190
 						}),
 						new Column({
 							left:0, right:0, 
@@ -343,16 +344,20 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 									contents:[
 										new Column({ left:0, width:70,
 											contents:[
-												new Picture({height:30, url: "assets/back.png",
-												active:true,
-												behavior: Behavior({
-														onTouchEnded: function(content) {
-															trace("Eddie put your code here \n");
-															application.remove(currentScreen);
-															currentScreen = prevScreen;
-															application.add(currentScreen);
-														}
-													})
+												Layer($, {alpha: true, effect: shadowEffect,
+													contents: [
+														new Picture({height:30, url: "assets/back.png",
+															active:true,
+															behavior: Behavior({
+																	onTouchEnded: function(content) {
+																		trace("Eddie put your code here \n");
+																		application.remove(currentScreen);
+																		currentScreen = prevScreen;
+																		application.add(currentScreen);
+																	}
+																})
+															})
+													]
 												})
 											]
 										}),
@@ -450,7 +455,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 								}),
 								// Comment block
 								Container($, {
-									left: 0, right: 0, top: 5,
+									left: 0, right: 0, top: 10,
 									contents: [
 										new Column({
 											top:40, left:0, right:0, editable: true, clip: true,
@@ -465,9 +470,9 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 												// 	})
 
 												// }),
-												new Label({style:boldBodyStyle, string:"What people are saying"}),
+												new Label({style:commentsTitleStyle, string:"What people are saying"}),
 												new Container({ 
-											    width: 250, height: 36,top:20, skin: nameInputSkin, contents: [
+											    width: 250, height: 36,top:8, skin: nameInputSkin, contents: [
 													Scroller($, { 
 											            left: 0, right: 0, height: 30, active: true, 
 											            clip: true, 
@@ -503,7 +508,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 											        }),
 												]}),
 												new Container({
-													active: true, left: 70, right: 70, top: 0, bottom: 10, top: 10, height: 0, skin: buttonSkin, visible: false,
+													active: true, left: 70, right: 70, bottom: 15, top: 15, height: 0, skin: buttonSkin, visible: false,
 													contents: [new Label({ string: 'submit comment', style: buttonStyle })],
 													behavior: Behavior({
 														onTouchEnded: function(content, id, x, y, ticks) {
