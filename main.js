@@ -15,6 +15,8 @@
  *     limitations under the License.
  */
 
+// Themes
+let iconBorderColor = "#ff8a2b"
 // START NAVBAR
 import {foodQueuesData} from 'dummydata';
 import {queueProfileScreenContainer, skinTemplate, listScrollerTemplate, HeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
@@ -79,8 +81,8 @@ var TopButton = Container.template($ => ({
 var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
     skin: new Skin({ fill: "#282828" }), // # c4c4c4 gray before, now orange
     contents: [
-        new TopButton({ iconURL: "assets/map.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
-        new TopButton({ iconURL: "assets/transparent_header_logo_small.png", left: 50, right: 0, nextScreen: favoritesScreenContainer}),
+        new TopButton({ iconURL: "assets/map-white.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
+        new TopButton({ iconURL: "assets/transparent_header_logo_small.png",left: 40, right: 0, nextScreen: favoritesScreenContainer}),
     ],
     behavior: Behavior({
         // reAddIcons: function(line) {
@@ -100,12 +102,12 @@ var NavButton = Container.template($ => ({
             this.upSkin = new Skin({
                 fill: "#282828", 
                 borders: {left: 0, right: 1, top: 0, bottom: 0}, 
-                stroke: "#aeadad"
+                stroke: "#333333"
             });
             this.downSkin = new Skin({
-                fill: "#FF7C02", 
-                //borders: {left: 1, right: 1, top: 1, bottom: 1}, 
-                //stroke: "black"
+                fill: "#282828", 
+                borders: {left: 0, right: 0, top: 0, bottom: 4}, 
+                stroke: iconBorderColor 
             });
             content.skin = this.upSkin;
         },
@@ -131,11 +133,11 @@ var NavButton = Container.template($ => ({
 var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
     skin: new Skin({ fill: "#282828" }),
     contents: [
-        new NavButton({ iconURL: "assets/star.png", nextScreen: favoritesScreenContainer}),
-        new NavButton({ iconURL: "assets/food.png", nextScreen: foodScreenContainer}),
-        new NavButton({ iconURL: "assets/restroom.png", nextScreen: restroomScreenContainer}),
-        new NavButton({ iconURL: "assets/merch.png", nextScreen: merchScreenContainer}),
-        new NavButton({ iconURL: "assets/schedule.png", nextScreen: infoScreenContainer}),
+        new NavButton({ iconURL: "assets/star-white.png", nextScreen: favoritesScreenContainer}),
+        new NavButton({ iconURL: "assets/food-white.png", nextScreen: foodScreenContainer}),
+        new NavButton({ iconURL: "assets/restroom-white.png", nextScreen: restroomScreenContainer}),
+        new NavButton({ iconURL: "assets/merch-white.png", nextScreen: merchScreenContainer}),
+        new NavButton({ iconURL: "assets/schedule-white.png", nextScreen: infoScreenContainer}),
     ]
 });
 

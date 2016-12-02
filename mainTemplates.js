@@ -5,15 +5,26 @@ import {
     FieldLabelBehavior
 } from 'field';
 
+// Themes
+let titleColor = "#ff8a2b"
+let bodyColor = "#FFF"
+let boldBodyColor = "#FFF"
+let bodyNumberColor = "#FFF"
+let listEntryBackground = "#121212"
+
+let commentBackgroundColor = "#252525"
+let commentNameAndBodyColor = "#FFF"
 
 // START SCREENS (triggered by hitting nav buttons)
 let placeHolderStyle = new Style({ font: "20px", color: "black" }), 
 
 // Skins
-export let skinTemplate = new Skin({fill: '#121212'}); // fill in!
-let blackSkin = new Skin({fill: '#000'})
-let commentSkin = new Skin({fill:"#F2F2F2" });
-let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#BDBDBD"});
+export let skinTemplate = new Skin({fill: 'transparent'}); // fill in!
+let whiteSkin = new Skin({ fill: "white" });
+let blackSkin = new Skin({fill: "#FFF"})
+
+let commentSkin = new Skin({fill:commentBackgroundColor });
+let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#000"});
 let rightBorderSkin = new Skin({borders: {left: 0, right: 1, top: 0, bottom: 0}, stroke: "#BDBDBD"});
 let buttonSkin = new Skin({fill: '#8fc138'});
 let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.5)"});
@@ -24,11 +35,10 @@ let fieldStyle = new Style({ color: 'black', font: 'bold 18px', horizontal: 'lef
     vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
 let fieldHintStyle = new Style({ color: '#aaa', font: '18px', horizontal: 'left',
     vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
-let whiteSkin = new Skin({ fill: "white" });
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
-let titleStyle = new Style({font: "bold 32px Roboto", color: "#fff" }); 
+let titleStyle = new Style({font: "bold 32px Roboto", color: titleColor }); 
 let titleStyleWhite = new Style({font: "bold 32px Roboto", color: "#fff" }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
 let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
@@ -43,11 +53,11 @@ export let HeaderLabelTemplate = Label.template($ => ({
 let bodyStyleWhite = new Style({font:"light 36px Roboto", color:"#fff"});
 let bodyNumberStyleWhite = new Style({font:"bold 48px Roboto", color:"#fff"});
 let boldBodyStyleWhite = new Style({font:"bold 17px Roboto", color:"#fff"});
-let bodyStyle = new Style({font:"light 17px Roboto", color:"#fff"});
-let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#fff"});
-let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#fff"});
-let commentNameStyle = new Style({font:"15px Roboto", color:"black"});
-let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"black"});
+let bodyStyle = new Style({font:"light 17px Roboto", color:bodyColor});
+let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:bodyNumberColor});
+let boldBodyStyle = new Style({font:"bold 17px Roboto", color:boldBodyColor});
+let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyColor});
+let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:commentNameAndBodyColor});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
 
@@ -72,7 +82,7 @@ import {favoritesQueuesData, foodQueuesData, restroomQueuesData, merchandiseQueu
 let headerStyle = new Style({ font: "34px", color: "black" }), 
 let whiteTextStyle = new Style({ font: "34px", color: "white" }), 
 
-let listEntrySkin = new Skin({fill: '#121212', borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#697268'})
+let listEntrySkin = new Skin({fill: listEntryBackground, borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#333'})
 
 
 // START LIST TEMPLATES
@@ -443,7 +453,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 									left: 0, right: 0, top: 5,
 									contents: [
 										new Column({
-											top:25, left:0, right:0, editable: true, clip: true,
+											top:40, left:0, right:0, editable: true, clip: true,
 											contents:[
 												// new Container({
 												// 	active: true, left: 90, right: 90, bottom: 15, top: 0, height: 30, skin: buttonSkin,
@@ -457,7 +467,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 												// }),
 												new Label({style:boldBodyStyle, string:"What people are saying"}),
 												new Container({ 
-											    width: 250, height: 36, skin: nameInputSkin, contents: [
+											    width: 250, height: 36,top:20, skin: nameInputSkin, contents: [
 													Scroller($, { 
 											            left: 0, right: 0, height: 30, active: true, 
 											            clip: true, 
