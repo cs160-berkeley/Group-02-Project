@@ -76,8 +76,8 @@ let bodyStyle = new Style({font:"light 17px Roboto", color:bodyColor});
 let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:bodyNumberColor});
 let boldBodyStyle = new Style({font:"bold 17px Roboto", color:boldBodyColor});
 let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyColor});
-let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"#A2A77F"});
-let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
+let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"#E8F1F2"});
+let commentTimeStyle = new Style({font:"12px Roboto", color:"#A2A77F", horizontal:'right'});
 // let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
 let commentsTitleStyle = new Style({font:"bold 24px Roboto", color:titleColor});
 
