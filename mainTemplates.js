@@ -10,7 +10,7 @@ import {
 let placeHolderStyle = new Style({ font: "20px", color: "black" }), 
 
 // Skins
-export let skinTemplate = new Skin({fill: '#E6E8E6'}); // fill in!
+export let skinTemplate = new Skin({fill: '#121212'}); // fill in!
 let blackSkin = new Skin({fill: '#000'})
 let commentSkin = new Skin({fill:"#F2F2F2" });
 let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#BDBDBD"});
@@ -28,7 +28,7 @@ let whiteSkin = new Skin({ fill: "white" });
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
-let titleStyle = new Style({font: "bold 32px Roboto", color: "#080708" }); 
+let titleStyle = new Style({font: "bold 32px Roboto", color: "#fff" }); 
 let titleStyleWhite = new Style({font: "bold 32px Roboto", color: "#fff" }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
 let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
@@ -43,13 +43,17 @@ export let HeaderLabelTemplate = Label.template($ => ({
 let bodyStyleWhite = new Style({font:"light 36px Roboto", color:"#fff"});
 let bodyNumberStyleWhite = new Style({font:"bold 48px Roboto", color:"#fff"});
 let boldBodyStyleWhite = new Style({font:"bold 17px Roboto", color:"#fff"});
-let bodyStyle = new Style({font:"light 17px Roboto", color:"#080708"});
-let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#080708"});
-let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#080708"});
+let bodyStyle = new Style({font:"light 17px Roboto", color:"#fff"});
+let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:"#fff"});
+let boldBodyStyle = new Style({font:"bold 17px Roboto", color:"#fff"});
 let commentNameStyle = new Style({font:"15px Roboto", color:"black"});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"black"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#828282", horizontal:'right'});
 let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
+
+var shadowEffect = new Effect;
+shadowEffect.outerShadow(null, 1, 2, 0, 2);
+
 
 import {prevScreen, currentScreen, changeScreensToProfile} from 'main';
 
@@ -68,7 +72,7 @@ import {favoritesQueuesData, foodQueuesData, restroomQueuesData, merchandiseQueu
 let headerStyle = new Style({ font: "34px", color: "black" }), 
 let whiteTextStyle = new Style({ font: "34px", color: "white" }), 
 
-let listEntrySkin = new Skin({fill: '#E6E8E6', borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#697268'})
+let listEntrySkin = new Skin({fill: '#121212', borders: {left: 0, right: 0, top: 1.5, bottom: 0}, stroke: '#697268'})
 
 
 // START LIST TEMPLATES
@@ -306,7 +310,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 					top: 0, left: 0, right: 0,
 					contents: [
 						Picture($, {
-							top: 0,left: 0,height: 215,
+							top: 0,left: 0,height: 170, aspect: 'fill',
 							width: application.width,
 							url: "assets/bg-imgs/foodtent.jpg",
 							Behavior: class extends Behavior{
@@ -319,7 +323,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 							height: application.height,
 							top: 0,
 							width: 460,
-							height: 215
+							height: 170
 						}),
 						new Column({
 							left:0, right:0, 
@@ -344,7 +348,11 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										}),
 										new Column({ left:0, width:180,
 											contents:[
-												new QueueTitleLabelTemplate({titleName: $.queueName})
+												Layer($, {alpha: true, effect: shadowEffect,
+													contents: [
+														new QueueTitleLabelTemplate({titleName: $.queueName})
+													]
+												})	
 											]
 										}),
 										new Column ({left:5,right:0, width:70,
@@ -401,22 +409,38 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 									contents: [
 										new Column({skin:rightBorderSkin, left: 30, right: 0,
 											contents:[
-												new Label({style:bodyNumberStyleWhite, string: $.queueLength}),
-												new Label({style:bodyStyleWhite, bottom:10, string:"minute wait"}),
+												Layer($, {alpha: true, effect: shadowEffect,
+													contents: [
+														new Label({style:bodyNumberStyleWhite, effect: shadowEffect, string: $.queueLength}),
+													]
+												}),
+												Layer($, {alpha: true, effect: shadowEffect,
+													contents: [
+														new Label({style:bodyStyleWhite, bottom:10, effect: shadowEffect, string:"minute wait"}),
+													]
+												})
 											]
 										}),
 										// Minutes to reach block
 										new Column({left: 0, right: 30, 
 											contents:[
-												new Label({style:bodyNumberStyleWhite, string: "10"}),
-												new Label({style:bodyStyleWhite, bottom:10, 	string:"minute walk"}),
+												Layer($, {alpha: true, effect: shadowEffect,
+													contents: [
+														new Label({style:bodyNumberStyleWhite, effect: shadowEffect, string: "10"}),
+													]
+												}),
+												Layer($, {alpha: true, effect: shadowEffect,
+													contents: [
+														new Label({style:bodyStyleWhite, bottom:10, effect: shadowEffect, string:"minute walk"}),
+													]
+												})
 											]
 										})
 									]
 								}),
 								// Comment block
 								Container($, {
-									left: 0, right: 0, top: 60,
+									left: 0, right: 0, top: 5,
 									contents: [
 										new Column({
 											top:25, left:0, right:0, editable: true, clip: true,
