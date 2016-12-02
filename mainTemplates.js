@@ -331,9 +331,9 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 					top: 0, left: 0, right: 0,
 					contents: [
 						Picture($, {
-							top: 0,left: 0,height: 190, aspect: 'fill',
+							top: 0,left: 0,height: 220, aspect: 'fill',
 							width: application.width,
-							url: "assets/bg-imgs/foodtent.jpg",
+							url: $.picURL,
 							Behavior: class extends Behavior{
 								onLoaded(picture) {
 								}
@@ -344,7 +344,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 							height: application.height,
 							top: 0,
 							width: 460,
-							height: 190
+							height: 220
 						}),
 						new Column({
 							left:0, right:0, 
@@ -430,7 +430,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 								}),
 								// Minutes to wait block
 								new Line({
-									left: 0, right: 0, top: 20,
+									left: 0, right: 0, top: 30,
 									contents: [
 										new Column({skin:rightBorderSkin, left: 30, right: 0,
 											contents:[
@@ -465,7 +465,7 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 								}),
 								// Comment block
 								Container($, {
-									left: 0, right: 0, top: 10,
+									left: 0, right: 0, top: 30,
 									contents: [
 										new Column({
 											top:40, left:0, right:0, editable: true, clip: true,
