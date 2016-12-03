@@ -105,7 +105,7 @@ var NavButton = Container.template($ => ({
                 stroke: "#333333"
             });
             this.downSkin = new Skin({
-                fill: "#282828", 
+                fill: "transparent", 
                 borders: {left: 0, right: 0, top: 0, bottom: 4}, 
                 stroke: iconBorderColor 
             });

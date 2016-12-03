@@ -45,7 +45,7 @@ let blackSkin = new Skin({fill: "#FFF"})
 let commentSkin = new Skin({fill:commentBackgroundColor });
 let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#000"});
 let rightBorderSkin = new Skin({borders: {left: 0, right: 1, top: 0, bottom: 0}, stroke: "#BDBDBD"});
-let buttonSkin = new Skin({fill: '#8fc138'});
+let buttonSkin = new Skin({fill: '#2978A0'});
 let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.4)"});
 
 
@@ -217,11 +217,7 @@ export let screenTemplate = Column.template($ => ({
 
 // export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
 let emptyQueueText = Column.template($ => ({
-<<<<<<< Updated upstream
 	top: 0, left: 0, right: 0,
-=======
-	top: 10, left: 0, right: 0,
->>>>>>> Stashed changes
 	contents: [
 		Text($, {
 			string:"No favorites to show",
@@ -231,11 +227,7 @@ let emptyQueueText = Column.template($ => ({
 			top: 30, height:180, url: "assets/star_large.png"
 		}),
 		Text($, {
-<<<<<<< Updated upstream
 			string:"Click the star icon on a queue to favorite it",
-=======
-			string:"click the star icon on a queue to save it",
->>>>>>> Stashed changes
 			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
 		)
 
@@ -547,11 +539,12 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 											        }),
 												]}),
 												new Container({
-													active: true, left: 70, right: 70, bottom: 15, top: 15, height: 0, skin: buttonSkin, visible: false,
+													active: true, left: 80, right: 80, bottom: 15, top: 15, height: 0, skin: buttonSkin, visible: false,
 													contents: [new Label({ string: 'submit comment', style: buttonStyle })],
 													behavior: Behavior({
 														onTouchEnded: function(content, id, x, y, ticks) {
 															application.distribute("getComment");
+															KEYBOARD.hide();
 														},
 														textTyped: function(container, data) {
 															container.visible = (data.length != 0);
