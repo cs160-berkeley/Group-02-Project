@@ -46,7 +46,7 @@ let commentSkin = new Skin({fill:commentBackgroundColor });
 let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#000"});
 let rightBorderSkin = new Skin({borders: {left: 0, right: 1, top: 0, bottom: 0}, stroke: "#BDBDBD"});
 let buttonSkin = new Skin({fill: '#8fc138'});
-let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.5)"});
+let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.4)"});
 
 
 let nameInputSkin = new Skin({ borders: { left: 0, right: 0, top: 0, bottom: 2 }, stroke: 'gray' });
@@ -57,14 +57,14 @@ let fieldHintStyle = new Style({ color: '#aaa', font: '16px', horizontal: 'left'
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
-let titleStyle = new Style({font: "bold 32px Roboto", color: titleColor }); 
+let titleStyle = new Style({font: "bold 36px Roboto", color: titleColor }); 
 let titleStyleWhite = new Style({font: "bold 32px Roboto", color: '#fff' }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
 let TitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyle}));
 let QueueTitleLabelTemplate = Label.template($ => ({string:$.titleName, style:titleStyleWhite}));
 export let HeaderLabelTemplate = Label.template($ => ({
 	string: $.titleName,
-	height: 48,
+	height: 62,
 	skin: skinTemplate,
 	style: titleStyle
 }));
@@ -72,9 +72,9 @@ export let HeaderLabelTemplate = Label.template($ => ({
 let bodyStyleWhite = new Style({font:"light 42px Roboto", color:"#fff"});
 let bodyNumberStyleWhite = new Style({font:"bold 54px Roboto", color:"#fff"});
 let boldBodyStyleWhite = new Style({font:"bold 17px Roboto", color:"#fff"});
-let bodyStyle = new Style({font:"light 17px Roboto", color:bodyColor});
+let bodyStyle = new Style({font:"light 18px Roboto", color:bodyColor});
 let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:bodyNumberColor});
-let boldBodyStyle = new Style({font:"bold 17px Roboto", color:boldBodyColor});
+let boldBodyStyle = new Style({font:"bold 18px Roboto", color:boldBodyColor});
 let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyColor});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"#E8F1F2"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#A2A77F", horizontal:'right'});
@@ -217,7 +217,11 @@ export let screenTemplate = Column.template($ => ({
 
 // export let favoritesScreen = Label.template($ => ({string:'Replace with Favorites list',style:placeHolderStyle}));
 let emptyQueueText = Column.template($ => ({
+<<<<<<< Updated upstream
 	top: 0, left: 0, right: 0,
+=======
+	top: 10, left: 0, right: 0,
+>>>>>>> Stashed changes
 	contents: [
 		Text($, {
 			string:"No favorites to show",
@@ -227,7 +231,11 @@ let emptyQueueText = Column.template($ => ({
 			top: 30, height:180, url: "assets/star_large.png"
 		}),
 		Text($, {
+<<<<<<< Updated upstream
 			string:"Click the star icon on a queue to favorite it",
+=======
+			string:"click the star icon on a queue to save it",
+>>>>>>> Stashed changes
 			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
 		)
 

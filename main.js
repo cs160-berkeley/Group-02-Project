@@ -109,7 +109,12 @@ var NavButton = Container.template($ => ({
                 borders: {left: 0, right: 0, top: 0, bottom: 4}, 
                 stroke: iconBorderColor 
             });
-            content.skin = this.upSkin;
+            if ($.defaultTab) {
+                content.skin = this.downSkin;
+            } else {
+                content.skin = this.upSkin;
+            }
+            
         },
         onTouchBegan: function(content){
             content.skin = this.downSkin;
@@ -133,11 +138,11 @@ var NavButton = Container.template($ => ({
 var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
     skin: new Skin({ fill: "#282828"}),
     contents: [
-        new NavButton({ iconURL: "assets/star-white.png", nextScreen: favoritesScreenContainer}),
-        new NavButton({ iconURL: "assets/food-white.png", nextScreen: foodScreenContainer}),
-        new NavButton({ iconURL: "assets/restroom-white.png", nextScreen: restroomScreenContainer}),
-        new NavButton({ iconURL: "assets/merch-white.png", nextScreen: merchScreenContainer}),
-        new NavButton({ iconURL: "assets/schedule-white.png", nextScreen: infoScreenContainer}),
+        new NavButton({ iconURL: "assets/star-white.png", nextScreen: favoritesScreenContainer, defaultTab: false}),
+        new NavButton({ iconURL: "assets/food-white.png", nextScreen: foodScreenContainer, defaultTab: true}),
+        new NavButton({ iconURL: "assets/restroom-white.png", nextScreen: restroomScreenContainer, defaultTab: false}),
+        new NavButton({ iconURL: "assets/merch-white.png", nextScreen: merchScreenContainer, defaultTab: false}),
+        new NavButton({ iconURL: "assets/schedule-white.png", nextScreen: infoScreenContainer, defaultTab: false}),
     ]
 });
 
