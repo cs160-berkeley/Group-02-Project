@@ -99,11 +99,19 @@ var NavButton = Container.template($ => ({
     active: true, top: 0, bottom: 0, right: 0, left: 0,
     behavior: Behavior({
         onCreate: function(content){
-            this.upSkin = new Skin({
-                fill: "#282828", 
-                borders: {left: 0, right: 1, top: 0, bottom: 0}, 
-                stroke: "#333333"
-            });
+            if ($.bothBorder == 1) {
+                this.upSkin = new Skin({
+                    fill: "#282828", 
+                    borders: {left: 1, right: 1, top: 0, bottom: 0}, 
+                    stroke: "#333333"
+                });
+            } else {
+                this.upSkin = new Skin({
+                    fill: "#282828", 
+                    borders: {left: 0, right: 1, top: 0, bottom: 0}, 
+                    stroke: "#333333"
+                });
+            }
             this.downSkin = new Skin({
                 fill: "transparent", 
                 borders: {left: 0, right: 0, top: 0, bottom: 4}, 
@@ -138,11 +146,11 @@ var NavButton = Container.template($ => ({
 var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
     skin: new Skin({ fill: "#282828"}),
     contents: [
-        new NavButton({ iconURL: "assets/star-white.png", nextScreen: favoritesScreenContainer, defaultTab: false}),
-        new NavButton({ iconURL: "assets/food-white.png", nextScreen: foodScreenContainer, defaultTab: true}),
-        new NavButton({ iconURL: "assets/restroom-white.png", nextScreen: restroomScreenContainer, defaultTab: false}),
-        new NavButton({ iconURL: "assets/merch-white.png", nextScreen: merchScreenContainer, defaultTab: false}),
-        new NavButton({ iconURL: "assets/schedule-white.png", nextScreen: infoScreenContainer, defaultTab: false}),
+        new NavButton({ iconURL: "assets/star-white.png", nextScreen: favoritesScreenContainer, defaultTab: false, bothBorder: 2}),
+        new NavButton({ iconURL: "assets/food-white.png", nextScreen: foodScreenContainer, defaultTab: true, bothBorder: 1}),
+        new NavButton({ iconURL: "assets/restroom-white.png", nextScreen: restroomScreenContainer, defaultTab: false, bothBorder: 1}),
+        new NavButton({ iconURL: "assets/merch-white.png", nextScreen: merchScreenContainer, defaultTab: false, bothBorder: 1}),
+        new NavButton({ iconURL: "assets/schedule-white.png", nextScreen: infoScreenContainer, defaultTab: false, bothBorder: 0}),
     ]
 });
 
