@@ -1,4 +1,5 @@
 import KEYBOARD from './keyboard';
+import Pins from "pins";
 
 import {
     FieldScrollerBehavior,
@@ -16,15 +17,9 @@ import {
 export let titleColor = "#F2D653" //yellowdd
 // export let titleColor = "#ff8a2b" // orange
 
-
-
 // *********************************
 // *  Different list font sizes here *
 // *********************************
-
-
-	
-
 
 let bodyColor = "#FFF"
 let boldBodyColor = "#FFF"
@@ -34,6 +29,12 @@ let listEntryBackground = "#121212"
 let commentBackgroundColor = "#252525"
 let commentNameAndBodyColor = "#FFF"
 
+// Queue wait time styles and numbers
+let maximumWaitTime = 20
+let longWaitColor = "#EB5757"
+let mediumWaitColor = "#F2994A"
+let shortWaitColor = "#27AE60"
+
 // START SCREENS (triggered by hitting nav buttons)
 let placeHolderStyle = new Style({ font: "20px", color: "black" }), 
 
@@ -42,6 +43,8 @@ export let skinTemplate = new Skin({fill: 'transparent'}); // fill in!
 let whiteSkin = new Skin({ fill: "white" });
 let blackSkin = new Skin({fill: "#FFF"})
 
+let waitTimeDisplaySkin = new Skin({ fill : [shortWaitColor, mediumWaitColor, longWaitColor] });
+let waitTimeDisplayStyle = new Style({font:"light 17px Roboto", color:[shortWaitColor, mediumWaitColor, longWaitColor]});
 let commentSkin = new Skin({fill:commentBackgroundColor });
 let bottomBorderSkin = new Skin({borders: {left: 0, right: 0, top: 0, bottom: 0}, stroke: "#000"});
 let rightBorderSkin = new Skin({borders: {left: 0, right: 1, top: 0, bottom: 0}, stroke: "#BDBDBD"});
@@ -117,7 +120,75 @@ let listEntryTitleTemplate = Label.template($ => ({
 	left: 15, top: 0, height: 24, string: $.queueName, style: boldBodyStyle, skin: skinTemplate
 }));
 let listEntryLocationTemplate = Label.template($ => ({left: 15, top: 0, bottom: 0, height: 24, string: $.queueLocation, style:bodyStyle, skin: skinTemplate}));
-let listEntryWaitTimeTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: $.waitTimeMinutes, style:boldBodyStyle, skin: skinTemplate}));
+let count = 0
+let listEntryWaitTimeTemplate = Label.template($ => ({
+	right: 15, top: 0, bottom: 0, height: 24, 
+	string: $.waitTimeMinutes, style:waitTimeDisplayStyle, skin: skinTemplate, state:0,
+	behavior: Behavior({
+		onDisplayed: function(label) {
+			Pins.configure({
+	            queueSensor0: {
+	        		require: "Analog", //"Analog" if using the built-in BLL
+	        		pins: {
+	             		analog: { pin: 54 }
+	        		}
+	      		},
+	      		queueSensor1: {
+	        		require: "Analog", //"Analog" if using the built-in BLL
+	        		pins: {
+	             		analog: { pin: 54 }
+	        		}
+	      		},
+	      		queueSensor2: {
+	        		require: "Analog", //"Analog" if using the built-in BLL
+	        		pins: {
+	             		analog: { pin: 54 }
+	        		}
+	      		},
+	      		queueSensor3: {
+	        		require: "Analog", //"Analog" if using the built-in BLL
+	        		pins: {
+	             		analog: { pin: 54 }
+	        		}
+	      		},
+	      		queueSensor4: {
+	        		require: "Analog", //"Analog" if using the built-in BLL
+	        		pins: {
+	             		analog: { pin: 54 }
+	        		}
+	      		}     
+        	},  success => this.onPinsConfigured(label, success));
+		},
+		onPinsConfigured(label, success) {
+            if (success) {
+                Pins.share("ws", {zeroconf: true, name: "queue-pins-share"});
+                let sensor = "queueSensor" + (count%5).toString()
+                // trace(sensor)
+                count += 1
+                // trace(count)
+                Pins.repeat("/"+sensor+"/read", 500, waitTime => this.onQueueWaitTimeChanged(label, waitTime));
+         
+                trace("successfully configured pins\n");
+            }
+            else {
+                trace("failed to configure pins\n");
+            }
+        },
+	    onQueueWaitTimeChanged(label, waitTime) {
+	        // trace("pass")
+	        label.string = ((waitTime*maximumWaitTime) | 0).toString();
+	        if (waitTime > 0.75) {
+	        	// trace("pass "+ waitTime)
+	        	label.state = 2
+	        } else if (waitTime > 0.25) {
+	        	label.state = 1
+	        } else {
+	        	label.state = 0
+	        }
+	    }
+	})
+}));
+
 let listEntryMinuteWaitTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate}));
 
 
@@ -154,7 +225,7 @@ let listEntryContainer = Container.template($ => ({
 		Line($, {left: 0, right: 0,
 					contents: [
 						new listEntryColumnTemplate({content: [new listEntryTitleTemplate({queueName: $.queueName}), new listEntryLocationTemplate({queueLocation: $.location})], data: $}),
-						new listEntryColumnTemplate({content: [new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({})], data: $}),
+						new listEntryColumnTemplate({content: [new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength, name:$.queueName}), new listEntryMinuteWaitTemplate({})], data: $}),
 
 					]
 				})
