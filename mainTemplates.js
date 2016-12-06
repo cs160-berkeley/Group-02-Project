@@ -247,6 +247,22 @@ export let favoritesScreenContainer = Container.template($ => ({
 			name:'foodScreen',
 		})] 
 }));
+
+export let mapScreenContainer = Container.template($ => ({
+	left:0, right: 0, top: 35, bottom: 50, clip: true,
+	skin: skinTemplate,
+	contents: [
+		screenTemplate({
+			contents:[
+				// new HeaderLabelTemplate({titleName: "Festival Map"}),
+				Picture($, {
+						top: -270, left: 0, width: application.width + 10, url: "assets/map.jpg", aspect: 'fit'
+					})
+					
+			], 
+			name:'mapScreen',
+		})] 
+}));
 // testing differnt way of scrolling content
 // export let favoritesScreenContainer = Container.template($ => ({
 // 	left:0, right: 0, top: 35, bottom: 50, active: true, 

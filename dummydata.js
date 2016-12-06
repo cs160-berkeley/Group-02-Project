@@ -19,7 +19,9 @@ export var foodQueuesData = [
    {queueName:'Crazy Cones', location:'Area 2', queueLength:45, picURL: 'assets/bg-imgs/foodtent.jpg',
            comments:[
                {time: '10:20am', name:'Abhi Rai', comment:'Great cone, worth the wait', favoriteURL: "assets/star.png"},
-               {time: '10:20am', name:'Abhi Rai', comment:'it was cool', favoriteURL: "assets/star.png"},
+               {time: '10:20am', name:'Dan Feldman', comment:'it was cool', favoriteURL: "assets/star.png"},
+               {time: '10:20am', name:'Eddie Conk', comment:'Chocolate flavor ran out...', favoriteURL: "assets/star.png"},
+               {time: '10:20am', name:'John Doe', comment:'Best ice cream at the festival!', favoriteURL: "assets/star.png"},
            ]
    },
   { queueName:'What the Pho', location:'Area 1', queueLength:34, picURL: 'assets/bg-imgs/foodtent.jpg',

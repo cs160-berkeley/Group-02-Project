@@ -18,7 +18,7 @@
 // Themes
 // START NAVBAR
 import {foodQueuesData} from 'dummydata';
-import {titleColor, queueProfileScreenContainer, skinTemplate, listScrollerTemplate, HeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
+import {titleColor, mapScreenContainer, queueProfileScreenContainer, skinTemplate, listScrollerTemplate, HeaderLabelTemplate, screenTemplate, foodScreen, infoScreenContainer, favoritesScreenContainer, restroomScreenContainer, merchScreenContainer} from 'mainTemplates';
 let favoritesImage = new Texture("assets/star.png");
 let iconBorderColor = titleColor
 
@@ -49,27 +49,14 @@ export let changeScreensToProfile = function(data) {
 
 
 var TopButton = Container.template($ => ({
-    active: false, top: 0, bottom: 0, left: $.left, width: 70,
-    // behavior: Behavior({
-    //     // onCreate: function(content){
-    //     //     this.upSkin = new Skin({
-    //     //         fill: "#C4C4C4", 
-    //     //     });
-    //     //     this.downSkin = new Skin({
-    //     //         fill: "#575757", 
-    //     //     });
-    //     //     content.skin = this.upSkin;
-    //     },
-    //     onTouchBegan: function(content){
-    //         // content.skin = this.downSkin;
-    //     },
-    //     onTouchEnded: function(content){
-    //         // content.skin = this.upSkin;
-    //         // application.remove(currentScreen);  // Remove the old screen from the application
-    //         // currentScreen = new $.nextScreen;  // Make the new screen
-    //         // application.add(currentScreen);  // Add the new screen to the application
-    //     },
-    // }),
+    active: true, top: 0, bottom: 0, left: $.left, width: 70,
+    behavior: Behavior({
+        onTouchEnded: function(content){
+            application.remove(currentScreen);  // Remove the old screen from the application
+            currentScreen = new $.nextScreen;  // Make the new screen
+            application.add(currentScreen);  // Add the new screen to the application
+        },
+    }),
    contents: [
         new Picture({height:22.5,left: 0, url: $.iconURL,
         behavior: Behavior({
@@ -81,8 +68,8 @@ var TopButton = Container.template($ => ({
 var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
     skin: new Skin({ fill: "#282828" }), // # c4c4c4 gray before, now orange
     contents: [
-        new TopButton({ iconURL: "assets/map-white.png", left: 0, right: 0, nextScreen: favoritesScreenContainer}),
-        new TopButton({ iconURL: "assets/transparent_header_logo_small.png",left: 40, right: 0, nextScreen: favoritesScreenContainer}),
+        new TopButton({ iconURL: "assets/map-white.png", left: 0, right: 0, nextScreen: mapScreenContainer}),
+        new TopButton({ iconURL: "assets/transparent_header_logo.jpg",left: 40, right: 0, nextScreen: favoritesScreenContainer}),
     ],
     behavior: Behavior({
         // reAddIcons: function(line) {
