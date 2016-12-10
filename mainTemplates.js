@@ -23,7 +23,6 @@ export let titleColor = "#F2D653" //yellowdd
 // *********************************
 
 
-	
 
 
 let bodyColor = "#FFF"
@@ -87,7 +86,7 @@ var shadowEffect = new Effect;
 shadowEffect.outerShadow(null, 1, 2, 0, 2);
 
 
-import {prevScreen, currentScreen, changeScreensToProfile} from 'main';
+import {prevScreen, currentScreen, changeScreensToProfile, waitTimeEstimate} from 'main';
 
 // IMPORT scrollers
 import {
@@ -111,22 +110,17 @@ let listEntrySkin = new Skin({fill: listEntryBackground, borders: {left: 0, righ
 
 //let blackTextStyle = new Style({ font: "18px", color: "black" }), 
 
+function estimateWeightTime(hardcoded) {
+	return Math.ceil(hardcoded *  waitTimeEstimate);
+};
 
 //Different text labels for each queue entry within a list
 let listEntryTitleTemplate = Label.template($ => ({
 	left: 15, top: 0, height: 24, string: $.queueName, style: boldBodyStyle, skin: skinTemplate
 }));
 let listEntryLocationTemplate = Label.template($ => ({left: 15, top: 0, bottom: 0, height: 24, string: $.queueLocation, style:bodyStyle, skin: skinTemplate}));
-let listEntryWaitTimeTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: $.waitTimeMinutes, style:boldBodyStyle, skin: skinTemplate}));
-let listEntryMinuteWaitTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate,
-	behavior: Behavior({
-		onCreate: function(label) {
-			if ($.info) {
-				label.string = "min until show";
-			}
-		}
-	})
-}));
+let listEntryWaitTimeTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: estimateWeightTime($.waitTimeMinutes), style:boldBodyStyle, skin: skinTemplate}));
+(??)let listEntryMinuteWaitTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate}));
 
 
 
@@ -163,7 +157,10 @@ let listEntryContainer = Container.template($ => ({
 		Line($, {left: 0, right: 0,
 					contents: [
 						new listEntryColumnTemplate({content: [new listEntryTitleTemplate({queueName: $.queueName}), new listEntryLocationTemplate({queueLocation: $.location})], data: $}),
-						new listEntryColumnTemplate({content: [new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({info: $.info})], data: $}),
+						new listEntryColumnTemplate({content: [new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({})], data: $}),
+						Picture($, {
+							url: "assets/right-arrow.png", height: 10, right:0
+						})
 
 					]
 				})
@@ -229,14 +226,14 @@ let emptyQueueText = Column.template($ => ({
 	top: 0, left: 0, right: 0,
 	contents: [
 		Text($, {
-			string:"No saved queues to show",
+			string:"No favorites to show",
 			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
 		),
 		Picture($, {
 			top: 30, height:180, url: "assets/star_large.png"
 		}),
 		Text($, {
-			string:"Click the star icon on a queue to save it",
+			string:"Click the star icon on a queue to favorite it",
 			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
 		)
 
@@ -249,7 +246,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-				new HeaderLabelTemplate({titleName: "Saved Queues"}),
+				new HeaderLabelTemplate({titleName: "Favorites"}),
 				(favoritesQueuesData.length > 0 ?  // This just puts instructions on how to favorite if there are no favorites
 					listScrollerTemplate(favoritesQueuesData, {}): new emptyQueueText({}))
 			], 
@@ -327,7 +324,7 @@ export let infoScreenContainer = Container.template($ => ({
 		screenTemplate({
 			contents:[
 			new HeaderLabelTemplate({titleName: "Information"}),
-			listScrollerTemplate(informationQueuesData, {info: true})
+			listScrollerTemplate(informationQueuesData, {})
 			], 
 			name:'foodScreen',
 		})] 

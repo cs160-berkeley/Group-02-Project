@@ -34,7 +34,7 @@ let foodScreenContainer = Container.template($ => ({
 			name:'foodScreen',
 		})] 
 }));
-
+export let waitTimeEstimate = 1;
 
 export var currentScreen = new foodScreenContainer;
 export var prevScreen = currentScreen;
@@ -145,5 +145,11 @@ var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
 // END NAVBAR
 application.add(topBar);
 application.add(navBar);
+
+let Pins = require("pins");
+ class AppBehavior extends Behavior {    onLaunch(application) {        Pins.configure({           queueSensor: {              require: "Analog", // use built-in digital BLL                pins: {                   analog: { pin: 54 }                }            },            }, function(success) {           if (!success) trace("Failed to configure\n");           else {                trace('falled\n');
+                Pins.repeat("/queueSensor/read", 50, value => {   	 				waitTimeEstimate = value;			})           }        },
+		
+        );           }}application.behavior = new AppBehavior();
 
 //application.distribute("onUpdateButtonSkin", navBar.contents[0].upSkin);
