@@ -117,8 +117,8 @@ let listEntryTitleTemplate = Label.template($ => ({
 	left: 15, top: 0, height: 24, string: $.queueName, style: boldBodyStyle, skin: skinTemplate
 }));
 let listEntryLocationTemplate = Label.template($ => ({left: 15, top: 0, bottom: 0, height: 24, string: $.queueLocation, style:bodyStyle, skin: skinTemplate}));
-let listEntryWaitTimeTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: $.waitTimeMinutes, style:boldBodyStyle, skin: skinTemplate}));
-let listEntryMinuteWaitTemplate = Label.template($ => ({right: 15, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate}));
+let listEntryWaitTimeTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: $.waitTimeMinutes, style:boldBodyStyle, skin: skinTemplate}));
+let listEntryMinuteWaitTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate}));
 
 
 //line for two sides of entry info
@@ -155,6 +155,9 @@ let listEntryContainer = Container.template($ => ({
 					contents: [
 						new listEntryColumnTemplate({content: [new listEntryTitleTemplate({queueName: $.queueName}), new listEntryLocationTemplate({queueLocation: $.location})], data: $}),
 						new listEntryColumnTemplate({content: [new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({})], data: $}),
+						Picture($, {
+							url: "assets/right-arrow.png", height: 10, right:0
+						})
 
 					]
 				})
