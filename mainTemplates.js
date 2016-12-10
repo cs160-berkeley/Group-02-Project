@@ -120,7 +120,15 @@ let listEntryTitleTemplate = Label.template($ => ({
 }));
 let listEntryLocationTemplate = Label.template($ => ({left: 15, top: 0, bottom: 0, height: 24, string: $.queueLocation, style:bodyStyle, skin: skinTemplate}));
 let listEntryWaitTimeTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: estimateWeightTime($.waitTimeMinutes), style:boldBodyStyle, skin: skinTemplate}));
-let listEntryMinuteWaitTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate}));
+let listEntryMinuteWaitTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate,
+	behavior: Behavior({
+		onCreate: function(label) {
+			if ($.info) {
+				label.string = "min until show";
+			}
+		}
+	})
+}));
 
 
 
@@ -151,7 +159,7 @@ let listEntryContainer = Container.template($ => ({
 		Line($, {left: 0, right: 0,
 					contents: [
 						new listEntryColumnTemplate({content: [new listEntryTitleTemplate({queueName: $.queueName}), new listEntryLocationTemplate({queueLocation: $.location})], data: $}),
-						new listEntryColumnTemplate({content: [new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({})], data: $}),
+						new listEntryColumnTemplate({content: [new listEntryWaitTimeTemplate({waitTimeMinutes: $.queueLength}), new listEntryMinuteWaitTemplate({info: $.info})], data: $}),
 						Picture($, {
 							url: "assets/right-arrow.png", height: 10, right:0
 						})
@@ -300,7 +308,7 @@ export let infoScreenContainer = Container.template($ => ({
 		screenTemplate({
 			contents:[
 			new HeaderLabelTemplate({titleName: "Information"}),
-			listScrollerTemplate(informationQueuesData, {info: true})
+			listScrollerTemplate(informationQueuesData)
 			], 
 			name:'foodScreen',
 		})] 
