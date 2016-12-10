@@ -71,14 +71,6 @@ var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
         new TopButton({ iconURL: "assets/map-white.png", left: 0, right: 0, nextScreen: mapScreenContainer}),
         new TopButton({ iconURL: "assets/transparent_header_logo.jpg",left: 40, right: 0, nextScreen: favoritesScreenContainer}),
     ],
-    behavior: Behavior({
-        // reAddIcons: function(line) {
-        //     trace(JSON.stringify(line) + "line\n");
-        //     line.add(new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}));
-        //     line.add(new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}));
-        //     line.add(new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}));
-        // }
-    })
 });
 
 
@@ -146,4 +138,3 @@ var navBar = new Line({ bottom: 0, height: 50, left: 0, right: 0,
 application.add(topBar);
 application.add(navBar);
 
-//application.distribute("onUpdateButtonSkin", navBar.contents[0].upSkin);

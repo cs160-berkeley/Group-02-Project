@@ -7,7 +7,7 @@ import {
 
 // Themes
 // *********************************
-// *  Different theme colors here *
+// *  Different theme colors here  *
 // *********************************
 
 // export let titleColor = "#C2E9FD" // "diamond" blue
@@ -18,9 +18,9 @@ export let titleColor = "#F2D653" //yellowdd
 
 
 
-// *********************************
+// ***********************************
 // *  Different list font sizes here *
-// *********************************
+// ***********************************
 
 
 	
@@ -78,7 +78,6 @@ let boldBodyStyle = new Style({font:"bold 18px Roboto", color:boldBodyColor});
 let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyColor});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"#E8F1F2"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#A2A77F", horizontal:'right'});
-// let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
 let commentsTitleStyle = new Style({font:"bold 24px Roboto", color:titleColor});
 
 let greyedTextStyle = new Style({font: "bold 24px Roboto", color: "#3a3a3a"})
@@ -109,9 +108,6 @@ let listEntrySkin = new Skin({fill: listEntryBackground, borders: {left: 0, righ
 
 // START LIST TEMPLATES
 
-//let blackTextStyle = new Style({ font: "18px", color: "black" }), 
-
-
 //Different text labels for each queue entry within a list
 let listEntryTitleTemplate = Label.template($ => ({
 	left: 15, top: 0, height: 24, string: $.queueName, style: boldBodyStyle, skin: skinTemplate
@@ -136,8 +132,6 @@ let listEntryLineTemplate = Line.template($ => ({
 	content: [
 		new Label({ left: 0, right: 0, top: 0, bottom: 0, string: "abc", 
     style: new Style({color: 'white'}) })
-		// new listEntryTitleTemplate({queueName: "HELLLOOOO"}),
-		// new listEntryWaitTimeTemplate({waitTimeMinutes: "20"})
 	]
 }));
 
@@ -145,11 +139,7 @@ let listEntryColumnTemplate = Column.template($ => ({
 	left: 0, right: 0, top: 0, active: true,
 	contents: $.content,
 	behavior: Behavior({
-        onBackgroundChange: function(container, data) {
-            // container.skin = data.newSkin;
-        },
         onTouchEnded: function(container, data) {
-            //content.skin = this.upSkin;
             changeScreensToProfile($.data); // Add the new screen to the application
         }
     })
@@ -198,7 +188,6 @@ let listColumnTemplate = Column.template($ => ({
 // lets make this shit scroll
 export let listScrollerTemplate = VerticalScroller.template($ => ({
 	active: true, top:0, clip: true, skin: skinTemplate,
-	// contents: [new listColumnTemplate({})]
 	contents: [
 		new listColumnTemplate($)
 	]
@@ -272,23 +261,6 @@ export let mapScreenContainer = Container.template($ => ({
 			name:'mapScreen',
 		})] 
 }));
-// testing differnt way of scrolling content
-// export let favoritesScreenContainer = Container.template($ => ({
-// 	left:0, right: 0, top: 35, bottom: 50, active: true, 
-// 	skin: skinTemplate,
-// 	contents: [
-// 		VerticalScroller($,{
-// 			contents: [
-// 				screenTemplate({
-// 					contents:[
-// 						new HeaderLabelTemplate({titleName: "Favorites"}),
-// 						listScrollerTemplate(favoritesQueuesData, {})
-// 					], 
-// 					name:'foodScreen',
-// 				})
-// 			]})
-// 		]
-// }));
 
 export let restroomScreen = Label.template($ => ({string:'Replace with restroom list',style:placeHolderStyle}));
 export let restroomScreenContainer = Container.template($ => ({
@@ -517,16 +489,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										new Column({
 											top:40, left:0, right:0, editable: true, clip: true,
 											contents:[
-												// new Container({
-												// 	active: true, left: 90, right: 90, bottom: 15, top: 0, height: 30, skin: buttonSkin,
-												// 	contents: [new Label({ string: 'new comment', style: buttonStyle })],
-												// 	behavior: Behavior({
-												// 		onTouchEnded: function(content, id, x, y, ticks) {
-												// 			application.distribute("newComment", $);
-												// 		}
-												// 	})
-
-												// }),
 												new Label({style:commentsTitleStyle, string:"What people are saying"}),
 												new Container({ 
 											    width: 250, height: 36,top:8, skin: nameInputSkin, contents: [
@@ -574,8 +536,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 														textTyped: function(container, data) {
 															container.visible = (data.length != 0);
 															if (container.visible) {
-																// container.top = 10;
-																// container.bottom = 10;
 																container.height = 30;
 															}
 														},
@@ -605,7 +565,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										            container.add(newComment);
 										        },
 										        onTouchEnded: function(container, data) {
-										            //content.skin = this.upSkin;
 										            changeScreensToProfile($.data); // Add the new screen to the application
 										        }
 										    })
