@@ -7,7 +7,7 @@ import {
 
 // Themes
 // *********************************
-// *  Different theme colors here *
+// *  Different theme colors here  *
 // *********************************
 
 // export let titleColor = "#C2E9FD" // "diamond" blue
@@ -18,9 +18,9 @@ export let titleColor = "#F2D653" //yellowdd
 
 
 
-// *********************************
+// ***********************************
 // *  Different list font sizes here *
-// *********************************
+// ***********************************
 
 
 
@@ -130,8 +130,6 @@ let listEntryLineTemplate = Line.template($ => ({
 	content: [
 		new Label({ left: 0, right: 0, top: 0, bottom: 0, string: "abc", 
     style: new Style({color: 'white'}) })
-		// new listEntryTitleTemplate({queueName: "HELLLOOOO"}),
-		// new listEntryWaitTimeTemplate({waitTimeMinutes: "20"})
 	]
 }));
 
@@ -139,11 +137,7 @@ let listEntryColumnTemplate = Column.template($ => ({
 	left: 0, right: 0, top: 0, active: true,
 	contents: $.content,
 	behavior: Behavior({
-        onBackgroundChange: function(container, data) {
-            // container.skin = data.newSkin;
-        },
         onTouchEnded: function(container, data) {
-            //content.skin = this.upSkin;
             changeScreensToProfile($.data); // Add the new screen to the application
         }
     })
@@ -195,7 +189,6 @@ let listColumnTemplate = Column.template($ => ({
 // lets make this shit scroll
 export let listScrollerTemplate = VerticalScroller.template($ => ({
 	active: true, top:0, clip: true, skin: skinTemplate,
-	// contents: [new listColumnTemplate({})]
 	contents: [
 		new listColumnTemplate($)
 	]
@@ -269,23 +262,6 @@ export let mapScreenContainer = Container.template($ => ({
 			name:'mapScreen',
 		})] 
 }));
-// testing differnt way of scrolling content
-// export let favoritesScreenContainer = Container.template($ => ({
-// 	left:0, right: 0, top: 35, bottom: 50, active: true, 
-// 	skin: skinTemplate,
-// 	contents: [
-// 		VerticalScroller($,{
-// 			contents: [
-// 				screenTemplate({
-// 					contents:[
-// 						new HeaderLabelTemplate({titleName: "Favorites"}),
-// 						listScrollerTemplate(favoritesQueuesData, {})
-// 					], 
-// 					name:'foodScreen',
-// 				})
-// 			]})
-// 		]
-// }));
 
 export let restroomScreen = Label.template($ => ({string:'Replace with restroom list',style:placeHolderStyle}));
 export let restroomScreenContainer = Container.template($ => ({
@@ -324,7 +300,7 @@ export let infoScreenContainer = Container.template($ => ({
 		screenTemplate({
 			contents:[
 			new HeaderLabelTemplate({titleName: "Information"}),
-			listScrollerTemplate(informationQueuesData, {})
+			listScrollerTemplate(informationQueuesData, {info: true})
 			], 
 			name:'foodScreen',
 		})] 
@@ -514,16 +490,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										new Column({
 											top:40, left:0, right:0, editable: true, clip: true,
 											contents:[
-												// new Container({
-												// 	active: true, left: 90, right: 90, bottom: 15, top: 0, height: 30, skin: buttonSkin,
-												// 	contents: [new Label({ string: 'new comment', style: buttonStyle })],
-												// 	behavior: Behavior({
-												// 		onTouchEnded: function(content, id, x, y, ticks) {
-												// 			application.distribute("newComment", $);
-												// 		}
-												// 	})
-
-												// }),
 												new Label({style:commentsTitleStyle, string:"What people are saying"}),
 												new Container({ 
 											    width: 250, height: 36,top:8, skin: nameInputSkin, contents: [
@@ -571,8 +537,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 														textTyped: function(container, data) {
 															container.visible = (data.length != 0);
 															if (container.visible) {
-																// container.top = 10;
-																// container.bottom = 10;
 																container.height = 30;
 															}
 														},
@@ -602,7 +566,6 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 										            container.add(newComment);
 										        },
 										        onTouchEnded: function(container, data) {
-										            //content.skin = this.upSkin;
 										            changeScreensToProfile($.data); // Add the new screen to the application
 										        }
 										    })

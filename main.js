@@ -71,14 +71,6 @@ var topBar = new Line({ top: 0, height: 35, left: 0, width: 480,
         new TopButton({ iconURL: "assets/map-white.png", left: 0, right: 0, nextScreen: mapScreenContainer}),
         new TopButton({ iconURL: "assets/transparent_header_logo.jpg",left: 40, right: 0, nextScreen: favoritesScreenContainer}),
     ],
-    behavior: Behavior({
-        // reAddIcons: function(line) {
-        //     trace(JSON.stringify(line) + "line\n");
-        //     line.add(new TopButton({ iconURL: "assets/menu.png", left: 20, right: 0, nextScreen: favoritesScreenContainer}));
-        //     line.add(new TopButton({ iconURL: "assets/map.png", left: -30, right: 0, nextScreen: favoritesScreenContainer}));
-        //     line.add(new TopButton({ iconURL: "assets/search.png", right: 0, left: 140, nextScreen: favoritesScreenContainer}));
-        // }
-    })
 });
 
 
@@ -147,9 +139,29 @@ application.add(topBar);
 application.add(navBar);
 
 let Pins = require("pins");
- class AppBehavior extends Behavior {    onLaunch(application) {        Pins.configure({           queueSensor: {              require: "Analog", // use built-in digital BLL                pins: {                   analog: { pin: 54 }                }            },            }, function(success) {           if (!success) trace("Failed to configure\n");           else {                trace('falled\n');
-                Pins.repeat("/queueSensor/read", 50, value => {   	 				waitTimeEstimate = value;			})           }        },
+ 
+class AppBehavior extends Behavior {
+    onLaunch(application) {
+        Pins.configure({
+           queueSensor: {
+              require: "Analog", // use built-in digital BLL
+                pins: {
+                   analog: { pin: 54 }
+                }
+            },
+            }, function(success) {
+           if (!success) trace("Failed to configure\n");
+           else {
+                trace('falled\n');
+                Pins.repeat("/queueSensor/read", 50, value => {
+   	 				waitTimeEstimate = value;
+			})
+           }
+        },
 		
-        );           }}application.behavior = new AppBehavior();
+        );
+       
+    }
+}
+application.behavior = new AppBehavior();
 
-//application.distribute("onUpdateButtonSkin", navBar.contents[0].upSkin);
