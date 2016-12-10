@@ -73,7 +73,7 @@ let bodyNumberStyleWhite = new Style({font:"bold 54px Roboto", color:"#fff"});
 let boldBodyStyleWhite = new Style({font:"bold 17px Roboto", color:"#fff"});
 let bodyStyle = new Style({font:"light 18px Roboto", color:bodyColor});
 let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:bodyNumberColor});
-let boldBodyStyle = new Style({font:"bold 18px Roboto", color:boldBodyColor});
+let boldBodyStyle = new Style({font:"bold 24px Roboto", color:boldBodyColor});
 let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyColor});
 let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"#E8F1F2"});
 let commentTimeStyle = new Style({font:"12px Roboto", color:"#A2A77F", horizontal:'right'});
@@ -470,13 +470,19 @@ export let queueProfileScreenContainer = VerticalScroller.template($ => ({
 											contents:[
 												Layer($, {alpha: true, effect: shadowEffect,
 													contents: [
-														new Label({style:bodyNumberStyleWhite, effect: shadowEffect, string: $.queueLength}),
+														new Label({style:bodyNumberStyleWhite, effect: shadowEffect, string: estimateWeightTime($.queueLength),
+															behavior: Behavior({
+																updateWaitTime: function(label, value) {
+																	label.string = estimateWeightTime($.queueLength);
+																}
+															})
+														}),
 													]
 												}),
 												Layer($, {alpha: true, effect: shadowEffect,
 													contents: [
 														new Label({style:bodyStyleWhite, bottom:10, effect: shadowEffect, string:"minute wait"}),
-													]
+													],
 												})
 											]
 										}),
