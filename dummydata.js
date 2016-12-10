@@ -78,18 +78,18 @@ export var merchandiseQueuesData = [
 
 export var informationQueuesData = [
    {
-    queueName:'Kanye West', location:'Main Stage - Area 1', queueLength:15, picURL: 'assets/bg-imgs/kanye.jpg',
+    queueName:'Kanye West', location:'Main Stage - Area 1', queueLength:15, picURL: 'assets/bg-imgs/kanye.jpg', info: true,
            comments:[
                {time: '10:20am', name:'Jasper', comment:'YEEZY', favoriteURL: "assets/star.png"},
            ]
    },
-   {queueName:'Taylor Swift', location:'Small Stage - Area 4', queueLength:35, picURL: 'assets/bg-imgs/taylor.jpg',
+   {queueName:'Taylor Swift', location:'Small Stage - Area 4', queueLength:35, picURL: 'assets/bg-imgs/taylor.jpg', info: true,
            comments:[
                {time: '10:20am', name:'Abhi Rai', comment:'Terrible line', favoriteURL: "assets/star.png"},
                {time: '10:20am', name:'Andy Carle', comment:'NOT WORTH IT STAY AWAY', favoriteURL: "assets/star.png"},
            ]
    },
-   {queueName:'Cloudsurfing', location:'Middle Stage - Area 2', queueLength:40, picURL: 'assets/bg-imgs/cloudsurfing.png',
+   {queueName:'Cloudsurfing', location:'Middle Stage - Area 2', queueLength:40, picURL: 'assets/bg-imgs/cloudsurfing.png', info: true,
            comments:[
                {time: '10:20am', name:'Abhi Rai', comment:'Their bassist SUCKS', favoriteURL: "assets/star.png"},
            ]
