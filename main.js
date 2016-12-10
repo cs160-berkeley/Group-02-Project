@@ -155,6 +155,7 @@ class AppBehavior extends Behavior {
                 trace('falled\n');
                 Pins.repeat("/queueSensor/read", 50, value => {
    	 				waitTimeEstimate = value;
+                    application.distribute("updateWaitTime", value);
 			})
            }
         },
