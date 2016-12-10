@@ -120,7 +120,7 @@ let listEntryTitleTemplate = Label.template($ => ({
 }));
 let listEntryLocationTemplate = Label.template($ => ({left: 15, top: 0, bottom: 0, height: 24, string: $.queueLocation, style:bodyStyle, skin: skinTemplate}));
 let listEntryWaitTimeTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: estimateWeightTime($.waitTimeMinutes), style:boldBodyStyle, skin: skinTemplate}));
-(??)let listEntryMinuteWaitTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate}));
+let listEntryMinuteWaitTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: "min wait", style:bodyStyle, skin: skinTemplate}));
 
 
 

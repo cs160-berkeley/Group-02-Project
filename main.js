@@ -34,7 +34,7 @@ let foodScreenContainer = Container.template($ => ({
 			name:'foodScreen',
 		})] 
 }));
-export let waitTimeEstimate = 1;
+export let waitTimeEstimate = .5;
 
 export var currentScreen = new foodScreenContainer;
 export var prevScreen = currentScreen;
