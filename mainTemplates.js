@@ -22,7 +22,9 @@ export let titleColor = "#F2D653" //yellowdd
 // *  Different list font sizes here *
 // ***********************************
 
-let longWaitColor = "#EB5757"let mediumWaitColor = "#F2994A"let shortWaitColor = "#27AE60"
+let longWaitColor = "#EB5757"
+let mediumWaitColor = "#F2994A"
+let shortWaitColor = "#27AE60"
 
 let bodyColor = "#FFF"
 let boldBodyColor = "#FFF"
@@ -54,7 +56,7 @@ let fieldHintStyle = new Style({ color: '#aaa', font: '16px', horizontal: 'left'
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
-let waitTimeDisplayStyle = new Style({font:"light 17px Roboto", color:[shortWaitColor, mediumWaitColor, longWaitColor]});
+let waitTimeDisplayStyle = new Style({font:"bold 23px Roboto", color:[shortWaitColor, mediumWaitColor, longWaitColor]});
 let titleStyle = new Style({font: "bold 36px Roboto", color: titleColor }); 
 let titleStyleWhite = new Style({font: "bold 32px Roboto", color: '#fff' }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
