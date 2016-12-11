@@ -22,8 +22,7 @@ export let titleColor = "#F2D653" //yellowdd
 // *  Different list font sizes here *
 // ***********************************
 
-
-
+let longWaitColor = "#EB5757"let mediumWaitColor = "#F2994A"let shortWaitColor = "#27AE60"
 
 let bodyColor = "#FFF"
 let boldBodyColor = "#FFF"
@@ -47,7 +46,6 @@ let rightBorderSkin = new Skin({borders: {left: 0, right: 1, top: 0, bottom: 0},
 let buttonSkin = new Skin({fill: '#2978A0'});
 let blackSkinTrans = new Skin ({fill: "rgba(0,0,0,0.4)"});
 
-
 let nameInputSkin = new Skin({ borders: { left: 0, right: 0, top: 0, bottom: 2 }, stroke: 'gray' });
 let fieldStyle = new Style({ color: 'white', font: 'bold 16px', horizontal: 'left',
     vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
@@ -56,6 +54,7 @@ let fieldHintStyle = new Style({ color: '#aaa', font: '16px', horizontal: 'left'
 let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });
 
 // Style templates
+let waitTimeDisplayStyle = new Style({font:"light 17px Roboto", color:[shortWaitColor, mediumWaitColor, longWaitColor]});
 let titleStyle = new Style({font: "bold 36px Roboto", color: titleColor }); 
 let titleStyleWhite = new Style({font: "bold 32px Roboto", color: '#fff' }); 
 let buttonStyle = new Style({font: "16px Roboto", color: "white"});
@@ -119,10 +118,19 @@ let listEntryTitleTemplate = Label.template($ => ({
 	left: 15, top: 0, height: 24, string: $.queueName, style: boldBodyStyle, skin: skinTemplate
 }));
 let listEntryLocationTemplate = Label.template($ => ({left: 15, top: 0, bottom: 0, height: 24, string: $.queueLocation, style:bodyStyle, skin: skinTemplate}));
-let listEntryWaitTimeTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: estimateWeightTime($.waitTimeMinutes), style:boldBodyStyle, skin: skinTemplate,
+let listEntryWaitTimeTemplate = Label.template($ => ({right: 0, top: 0, bottom: 0, height: 24, string: estimateWeightTime($.waitTimeMinutes), style:waitTimeDisplayStyle, skin: skinTemplate, state:0,
 	behavior: Behavior({
 		updateWaitTime: function(label, value) {
 			label.string = estimateWeightTime($.waitTimeMinutes);
+			if (estimateWeightTime($.waitTimeMinutes) > 25) {
+				label.state = 2
+			} else if (estimateWeightTime($.waitTimeMinutes) > 10) {
+				label.state = 1
+			} else {
+				label.state = 0
+			}
+			
+			
 		}
 	})
 }));
