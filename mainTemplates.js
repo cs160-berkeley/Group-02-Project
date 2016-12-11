@@ -68,15 +68,15 @@ export let HeaderLabelTemplate = Label.template($ => ({
 	style: titleStyle
 }));
 
-let bodyStyleWhite = new Style({font:"light 42px Roboto", color:"#fff"});
+let bodyStyleWhite = new Style({font:"19px Roboto", color:"#fff"});
 let bodyNumberStyleWhite = new Style({font:"bold 54px Roboto", color:"#fff"});
 let boldBodyStyleWhite = new Style({font:"bold 17px Roboto", color:"#fff"});
-let bodyStyle = new Style({font:"light 18px Roboto", color:bodyColor});
+let bodyStyle = new Style({font:"15px Roboto", color:bodyColor});
 let bodyNumberStyle = new Style({font:"bold 30px Roboto", color:bodyNumberColor});
 let boldBodyStyle = new Style({font:"bold 22px Roboto", color:boldBodyColor});
-let commentNameStyle = new Style({font:"15px Roboto", color: commentNameAndBodyColor});
-let commentBodyStyle = new Style({horizontal:"left", font:"12px Roboto", color:"#E8F1F2"});
-let commentTimeStyle = new Style({font:"12px Roboto", color:"#A2A77F", horizontal:'right'});
+let commentNameStyle = new Style({font:"16px Roboto", color: commentNameAndBodyColor});
+let commentBodyStyle = new Style({horizontal:"left", font:"14px Roboto", color:"#E8F1F2"});
+let commentTimeStyle = new Style({font:"14px Roboto", color:"#A2A77F", horizontal:'right'});
 // let commentReplyStyle = new Style({font:"10px Roboto", color:"black"});
 let commentsTitleStyle = new Style({font:"bold 24px Roboto", color:titleColor});
 
