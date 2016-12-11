@@ -243,14 +243,14 @@ let emptyQueueText = Column.template($ => ({
 	top: 0, left: 0, right: 0,
 	contents: [
 		Text($, {
-			string:"No favorites to show",
+			string:"No saved queues to show",
 			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
 		),
 		Picture($, {
 			top: 30, height:180, url: "assets/star_large.png"
 		}),
 		Text($, {
-			string:"Click the star icon on a queue to favorite it",
+			string:"Click the star icon on a queue to save it",
 			style: greyedTextStyle, right:10, left:10,top:20,bottom:0}
 		)
 
@@ -263,7 +263,7 @@ export let favoritesScreenContainer = Container.template($ => ({
 	contents: [
 		screenTemplate({
 			contents:[
-				new HeaderLabelTemplate({titleName: "Favorites"}),
+				new HeaderLabelTemplate({titleName: "Saved Queues"}),
 				(favoritesQueuesData.length > 0 ?  // This just puts instructions on how to favorite if there are no favorites
 					listScrollerTemplate(favoritesQueuesData, {}): new emptyQueueText({}))
 			], 
